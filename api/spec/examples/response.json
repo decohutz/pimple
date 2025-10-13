@@ -1,0 +1,8 @@
+{
+  "prob_malignant": 0.31,
+  "risk_level": "BAIXO_RISCO",
+  "threshold": 0.62,
+  "echo": { "sex": "male", "localization": "back", "age": 29 },
+  "analyzed_at": "2025-10-13T14:00:00-03:00",
+  "disclaimer": "Este app é educacional e não fornece diagnóstico."
+}

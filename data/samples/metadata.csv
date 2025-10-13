@@ -1,0 +1,3 @@
+image_path,sex,localization,age
+samples/sample1.jpg,male,back,29
+samples/sample2.jpg,female,face,41

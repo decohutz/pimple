@@ -1,0 +1,22 @@
+### Exemplo (usando VS Code REST Client)
+POST http://localhost:8000/analyze
+Content-Type: multipart/form-data; boundary=BOUND
+
+--BOUND
+Content-Disposition: form-data; name="sex"
+
+male
+--BOUND
+Content-Disposition: form-data; name="localization"
+
+back
+--BOUND
+Content-Disposition: form-data; name="age"
+
+29
+--BOUND
+Content-Disposition: form-data; name="image"; filename="sample.jpg"
+Content-Type: image/jpeg
+
+< ./../../data/samples/sample.jpg
+--BOUND--
