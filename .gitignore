@@ -1,0 +1,94 @@
+########################################
+# SISTEMA / EDITOR
+########################################
+# Arquivos de sistema
+.DS_Store
+Thumbs.db
+
+# IDEs / editores
+.vscode/
+.idea/
+*.code-workspace
+
+########################################
+# PYTHON / BACKEND
+########################################
+# Compilados Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.pydc
+
+# Ambientes virtuais
+.venv/
+venv/
+env/
+.env/
+.env.local
+.env.*
+
+# Ferramentas / testes
+.pytest_cache/
+.mypy_cache/
+.cache/
+coverage.xml
+htmlcov/
+.coverage*
+.tox/
+
+# Logs
+*.log
+
+########################################
+# NODE / FRONTEND (pasta app/)
+########################################
+app/node_modules/
+app/dist/
+app/.vite/
+app/.eslintcache
+app/.parcel-cache/
+
+# Arquivos de lock extras (se quiser manter só um)
+# descomenta se você decidir fixar só um tipo
+# yarn.lock
+# pnpm-lock.yaml
+
+########################################
+# DADOS PESADOS / MODELOS
+########################################
+# Mantemos data/samples versionado (metadata.csv, imagens de exemplo)
+# mas ignoramos diretórios com dados crus ou grandes
+data/raw/
+data/processed/
+data/tmp/
+data/cache/
+
+# Modelos treinados
+models/
+checkpoints/
+
+########################################
+# NOTEBOOKS / EXPORTS
+########################################
+# Cache de Jupyter
+.ipynb_checkpoints/
+.notebooks_cache/
+
+# Exports grandes (pdf, html) que você gerar a partir dos notebooks
+notebooks/**/exports/
+*.nbconvert.ipynb
+
+########################################
+# OUTROS
+########################################
+# Arquivos temporários em geral
+*.swp
+*.swo
+*~
+.tmp/
+temp/
+
+# Arquivos de backup “.orig”/“.bak”
+*.bak
+*.orig

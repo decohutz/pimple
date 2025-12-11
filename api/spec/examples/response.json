@@ -1,8 +1,12 @@
 {
-  "prob_malignant": 0.31,
-  "risk_level": "BAIXO_RISCO",
+  "prob_malignant": 0.55,
+  "risk_level": "INCERTO",
   "threshold": 0.62,
-  "echo": { "sex": "male", "localization": "back", "age": 29 },
-  "analyzed_at": "2025-10-13T14:00:00-03:00",
-  "disclaimer": "Este app é educacional e não fornece diagnóstico."
+  "echo": {
+    "sex": "male",
+    "localization": "back",
+    "age": 29
+  },
+  "analyzed_at": "2025-01-01T12:00:00.000000+00:00",
+  "disclaimer": "Este aplicativo é apenas para fins educacionais e NÃO substitui avaliação médica profissional. Em caso de dúvida, consulte um dermatologista."
 }
