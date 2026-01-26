@@ -1,0 +1,44 @@
+{
+  "find_best_image_col": {
+    "sample_n": 400,
+    "seed": 42,
+    "strategy": "random_sample"
+  },
+  "image_col_effective": "image_stem",
+  "image_col_from_config": "image",
+  "label_cols": [
+    "mel",
+    "nv",
+    "bcc",
+    "akiec",
+    "bkl",
+    "df",
+    "vasc"
+  ],
+  "meta_cols": [],
+  "mode": "single_label",
+  "one_hot_integrity": {
+    "atol": 0.001,
+    "policy": "abort"
+  },
+  "resolved_at_utc": "2026-01-26T17:00:47.103594+00:00",
+  "source_target_config_json": "C:\\Users\\win\\Documents\\GitHub\\pimple\\data\\processed\\target_config.json",
+  "splits_report_meta": {
+    "keys": [
+      "generated_at",
+      "seed",
+      "split_cfg",
+      "split_method",
+      "paths",
+      "schema_snapshot",
+      "cleaning",
+      "counts",
+      "distributions",
+      "missingness",
+      "sanity_visual_samples",
+      "integrity_checks"
+    ],
+    "seed": 42
+  },
+  "target_encoding": "one_hot_multiclass"
+}
