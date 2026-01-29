@@ -1,4 +1,6 @@
-from fastapi import FastAPI
+from pathlib import Path
+
+from fastapi import FastAPI, UploadFile, File, Query, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 
 from app.settings import Settings
@@ -13,9 +15,14 @@ from app.models import (
     PredictionsListResponse,
     PredictionDetailResponse,
 )
-from app.dataset import get_dataset_summary, list_dataset_items, get_dataset_item, get_image_file, get_mask_file
+from app.dataset import (
+    get_dataset_summary,
+    list_dataset_items,
+    get_dataset_item,
+    get_image_file,
+    get_mask_file,
+)
 from app.predict import run_dummy_predict
-from fastapi import UploadFile, File, Query, HTTPException
 
 
 def create_app() -> FastAPI:
@@ -52,6 +59,47 @@ def create_app() -> FastAPI:
     def version():
         return {"name": "pimple-api", "version": app.version}
 
+    # DEBUG (para descobrir por que está 0)
+    @app.get("/api/debug/dataset")
+    def debug_dataset():
+        api_dir = Path(__file__).resolve().parent  # .../pimple/api
+
+        def resolve(p: str) -> Path:
+            if not p:
+                return Path("")
+            pp = Path(p)
+            return pp if pp.is_absolute() else (api_dir / pp).resolve()
+
+        images_dir = resolve(settings.dataset_images_dir)
+        masks_dir = resolve(settings.dataset_masks_dir)
+        csv_path = resolve(settings.dataset_csv_path)
+
+        def count_files(d: Path):
+            if not d or not d.exists() or not d.is_dir():
+                return 0
+            return sum(1 for x in d.iterdir() if x.is_file())
+
+        return {
+            "cwd": str(Path().resolve()),
+            "api_dir": str(api_dir),
+
+            "dataset_images_dir_env": settings.dataset_images_dir,
+            "dataset_masks_dir_env": settings.dataset_masks_dir,
+            "dataset_csv_path_env": settings.dataset_csv_path,
+
+            "images_dir_resolved": str(images_dir),
+            "images_exists": images_dir.exists(),
+            "images_count_any": count_files(images_dir),
+
+            "masks_dir_resolved": str(masks_dir),
+            "masks_exists": masks_dir.exists(),
+            "masks_count_any": count_files(masks_dir),
+
+            "csv_path_resolved": str(csv_path),
+            "csv_exists": csv_path.exists(),
+            "csv_size_bytes": csv_path.stat().st_size if csv_path.exists() else 0,
+        }
+
     @app.get("/api/dataset/summary", response_model=DatasetSummaryResponse)
     def dataset_summary():
         return get_dataset_summary(settings)
@@ -76,7 +124,6 @@ def create_app() -> FastAPI:
         file_path = get_image_file(settings, item_id)
         if not file_path:
             raise HTTPException(status_code=404, detail="Image not found")
-        # FastAPI FileResponse
         from fastapi.responses import FileResponse
         return FileResponse(file_path)
 
@@ -90,7 +137,6 @@ def create_app() -> FastAPI:
 
     @app.post("/api/predict", response_model=PredictResponse)
     async def predict(file: UploadFile = File(...)):
-        # Dummy predict + salva no sqlite
         return await run_dummy_predict(settings, file)
 
     @app.get("/api/predictions", response_model=PredictionsListResponse)
