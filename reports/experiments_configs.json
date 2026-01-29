@@ -1,0 +1,277 @@
+{
+  "meta": {
+    "generated_at": "2026-01-27 16:26:25",
+    "project_root": "C:\\Users\\win\\Documents\\GitHub",
+    "target_config_source": "pimple\\data\\processed\\target_config_effective.json",
+    "label_cols": [
+      "mel",
+      "nv",
+      "bcc",
+      "akiec",
+      "bkl",
+      "df",
+      "vasc"
+    ],
+    "image_col": "image_stem",
+    "labels": [
+      "mel",
+      "nv",
+      "bcc",
+      "akiec",
+      "bkl",
+      "df",
+      "vasc"
+    ],
+    "seed": 42,
+    "device": "cpu",
+    "torch_available": true,
+    "torchvision_available": false,
+    "mask_policy": {
+      "mask_coverage_ratio_in_clean": 1.0,
+      "mask_required_for_inclusion": false,
+      "notes": "Máscaras são opcionais no dataset_clean; usadas apenas se a trilha de segmentação for escolhida.",
+      "resolution_strategy": {
+        "fallback_by_stem": true,
+        "from_csv_if_available": false,
+        "suffixes_used": [
+          "",
+          "_mask",
+          "-mask",
+          "_seg",
+          "-seg",
+          "_segmentation",
+          "-segmentation",
+          "_lesion",
+          "_lesion_mask",
+          "_binary",
+          "_annotation",
+          "_ann"
+        ]
+      },
+      "segmentation_considered": true
+    },
+    "note": "sklearn-only (torchvision ausente). Resultados são sanity/seleção preliminar."
+  },
+  "experiments": {
+    "sk_logreg_32": {
+      "family": "sklearn_logreg_flatten",
+      "input_size": 32,
+      "class_weight": null,
+      "max_iter": 250,
+      "seed": 42,
+      "exp_id": "sk_logreg_32",
+      "target_config_source": "pimple\\data\\processed\\target_config_effective.json",
+      "project_root": "C:\\Users\\win\\Documents\\GitHub",
+      "device": "cpu",
+      "labels": [
+        "mel",
+        "nv",
+        "bcc",
+        "akiec",
+        "bkl",
+        "df",
+        "vasc"
+      ],
+      "mask_policy": {
+        "mask_coverage_ratio_in_clean": 1.0,
+        "mask_required_for_inclusion": false,
+        "notes": "Máscaras são opcionais no dataset_clean; usadas apenas se a trilha de segmentação for escolhida.",
+        "resolution_strategy": {
+          "fallback_by_stem": true,
+          "from_csv_if_available": false,
+          "suffixes_used": [
+            "",
+            "_mask",
+            "-mask",
+            "_seg",
+            "-seg",
+            "_segmentation",
+            "-segmentation",
+            "_lesion",
+            "_lesion_mask",
+            "_binary",
+            "_annotation",
+            "_ann"
+          ]
+        },
+        "segmentation_considered": true
+      }
+    },
+    "sk_logreg_32_bal": {
+      "family": "sklearn_logreg_flatten",
+      "input_size": 32,
+      "class_weight": "balanced",
+      "max_iter": 250,
+      "seed": 42,
+      "exp_id": "sk_logreg_32_bal",
+      "target_config_source": "pimple\\data\\processed\\target_config_effective.json",
+      "project_root": "C:\\Users\\win\\Documents\\GitHub",
+      "device": "cpu",
+      "labels": [
+        "mel",
+        "nv",
+        "bcc",
+        "akiec",
+        "bkl",
+        "df",
+        "vasc"
+      ],
+      "mask_policy": {
+        "mask_coverage_ratio_in_clean": 1.0,
+        "mask_required_for_inclusion": false,
+        "notes": "Máscaras são opcionais no dataset_clean; usadas apenas se a trilha de segmentação for escolhida.",
+        "resolution_strategy": {
+          "fallback_by_stem": true,
+          "from_csv_if_available": false,
+          "suffixes_used": [
+            "",
+            "_mask",
+            "-mask",
+            "_seg",
+            "-seg",
+            "_segmentation",
+            "-segmentation",
+            "_lesion",
+            "_lesion_mask",
+            "_binary",
+            "_annotation",
+            "_ann"
+          ]
+        },
+        "segmentation_considered": true
+      }
+    },
+    "sk_logreg_64": {
+      "family": "sklearn_logreg_flatten",
+      "input_size": 64,
+      "class_weight": null,
+      "max_iter": 250,
+      "seed": 42,
+      "exp_id": "sk_logreg_64",
+      "target_config_source": "pimple\\data\\processed\\target_config_effective.json",
+      "project_root": "C:\\Users\\win\\Documents\\GitHub",
+      "device": "cpu",
+      "labels": [
+        "mel",
+        "nv",
+        "bcc",
+        "akiec",
+        "bkl",
+        "df",
+        "vasc"
+      ],
+      "mask_policy": {
+        "mask_coverage_ratio_in_clean": 1.0,
+        "mask_required_for_inclusion": false,
+        "notes": "Máscaras são opcionais no dataset_clean; usadas apenas se a trilha de segmentação for escolhida.",
+        "resolution_strategy": {
+          "fallback_by_stem": true,
+          "from_csv_if_available": false,
+          "suffixes_used": [
+            "",
+            "_mask",
+            "-mask",
+            "_seg",
+            "-seg",
+            "_segmentation",
+            "-segmentation",
+            "_lesion",
+            "_lesion_mask",
+            "_binary",
+            "_annotation",
+            "_ann"
+          ]
+        },
+        "segmentation_considered": true
+      }
+    },
+    "sk_logreg_64_bal": {
+      "family": "sklearn_logreg_flatten",
+      "input_size": 64,
+      "class_weight": "balanced",
+      "max_iter": 250,
+      "seed": 42,
+      "exp_id": "sk_logreg_64_bal",
+      "target_config_source": "pimple\\data\\processed\\target_config_effective.json",
+      "project_root": "C:\\Users\\win\\Documents\\GitHub",
+      "device": "cpu",
+      "labels": [
+        "mel",
+        "nv",
+        "bcc",
+        "akiec",
+        "bkl",
+        "df",
+        "vasc"
+      ],
+      "mask_policy": {
+        "mask_coverage_ratio_in_clean": 1.0,
+        "mask_required_for_inclusion": false,
+        "notes": "Máscaras são opcionais no dataset_clean; usadas apenas se a trilha de segmentação for escolhida.",
+        "resolution_strategy": {
+          "fallback_by_stem": true,
+          "from_csv_if_available": false,
+          "suffixes_used": [
+            "",
+            "_mask",
+            "-mask",
+            "_seg",
+            "-seg",
+            "_segmentation",
+            "-segmentation",
+            "_lesion",
+            "_lesion_mask",
+            "_binary",
+            "_annotation",
+            "_ann"
+          ]
+        },
+        "segmentation_considered": true
+      }
+    },
+    "svm_64_bal": {
+      "family": "sklearn_linearsvc_flatten",
+      "input_size": 64,
+      "class_weight": "balanced",
+      "C": 1.0,
+      "seed": 42,
+      "exp_id": "svm_64_bal",
+      "target_config_source": "pimple\\data\\processed\\target_config_effective.json",
+      "project_root": "C:\\Users\\win\\Documents\\GitHub",
+      "device": "cpu",
+      "labels": [
+        "mel",
+        "nv",
+        "bcc",
+        "akiec",
+        "bkl",
+        "df",
+        "vasc"
+      ],
+      "mask_policy": {
+        "mask_coverage_ratio_in_clean": 1.0,
+        "mask_required_for_inclusion": false,
+        "notes": "Máscaras são opcionais no dataset_clean; usadas apenas se a trilha de segmentação for escolhida.",
+        "resolution_strategy": {
+          "fallback_by_stem": true,
+          "from_csv_if_available": false,
+          "suffixes_used": [
+            "",
+            "_mask",
+            "-mask",
+            "_seg",
+            "-seg",
+            "_segmentation",
+            "-segmentation",
+            "_lesion",
+            "_lesion_mask",
+            "_binary",
+            "_annotation",
+            "_ann"
+          ]
+        },
+        "segmentation_considered": true
+      }
+    }
+  }
+}

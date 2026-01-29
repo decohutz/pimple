@@ -1,214 +1,150 @@
-from datetime import datetime, timezone
-from enum import Enum
-from typing import Optional
+from pathlib import Path
 
-from fastapi import (
-    FastAPI,
-    File,
-    Form,
-    HTTPException,
-    UploadFile,
-)
+from fastapi import FastAPI, UploadFile, File, Query, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import FileResponse
 
-
-# ============================================================
-# Configuração básica da aplicação
-# ============================================================
-
-app = FastAPI(
-    title="pimple API (mock)",
-    description=(
-        "API mock para o MVP do pimple. "
-        "O endpoint principal é POST /analyze."
-    ),
-    version="0.1.0",
+from app.settings import Settings
+from app.db import init_db, list_predictions, get_prediction, clear_predictions
+from app.models import (
+    HealthResponse,
+    VersionResponse,
+    DatasetSummaryResponse,
+    DatasetItemsResponse,
+    DatasetItemDetailResponse,
+    PredictResponse,
+    PredictionsListResponse,
+    PredictionDetailResponse,
 )
-
-# CORS liberado para desenvolvimento (depois podemos restringir)
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=["*"],  # em produção, restringir!
-    allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
+from app.dataset import (
+    get_dataset_summary,
+    list_dataset_items,
+    get_dataset_item,
+    get_image_file,
+    get_mask_file,
 )
+from app.predict import run_dummy_predict
 
 
-# ============================================================
-# Enums de domínio (seguindo o dicionário de dados)
-# ============================================================
+def create_app() -> FastAPI:
+    settings = Settings()
 
-class SexEnum(str, Enum):
-    male = "male"
-    female = "female"
-    unknown = "unknown"
-
-
-class LocalizationEnum(str, Enum):
-    back = "back"
-    chest = "chest"
-    face = "face"
-    upper_extremity = "upper extremity"
-    lower_extremity = "lower extremity"
-    abdomen = "abdomen"
-    scalp = "scalp"
-    ear = "ear"
-    hand = "hand"
-    foot = "foot"
-    unknown = "unknown"
-
-
-class RiskLevelEnum(str, Enum):
-    BAIXO_RISCO = "BAIXO_RISCO"
-    INCERTO = "INCERTO"
-    ALTO_RISCO = "ALTO_RISCO"
-
-
-# ============================================================
-# Lógica mock do "modelo"
-# ============================================================
-
-def mock_predict_probability(
-    sex: SexEnum,
-    localization: LocalizationEnum,
-    age: Optional[int],
-) -> float:
-    """
-    Função fake e determinística para gerar probabilidade de malignidade.
-
-    Ideia:
-      - Começa em 0.30
-      - Adiciona +0.20 se localização é face / scalp / back
-      - Adiciona +0.05 se sexo é male
-      - Adiciona +0.15 se idade >= 50
-
-    Retorna valor entre 0 e 1.
-    """
-    base = 0.30
-
-    if localization in {
-        LocalizationEnum.face,
-        LocalizationEnum.scalp,
-        LocalizationEnum.back,
-    }:
-        base += 0.20
-
-    if sex == SexEnum.male:
-        base += 0.05
-
-    if age is not None and age >= 50:
-        base += 0.15
-
-    # Garante que o valor fique entre 0 e 1
-    return max(0.0, min(1.0, base))
-
-
-def classify_risk(prob: float, threshold: float = 0.62) -> RiskLevelEnum:
-    """
-    Classifica a probabilidade em 3 faixas:
-
-      - prob < threshold - 0.10  → BAIXO_RISCO
-      - prob > threshold + 0.10  → ALTO_RISCO
-      - caso contrário           → INCERTO
-    """
-    low_cut = threshold - 0.10
-    high_cut = threshold + 0.10
-
-    if prob < low_cut:
-        return RiskLevelEnum.BAIXO_RISCO
-    if prob > high_cut:
-        return RiskLevelEnum.ALTO_RISCO
-    return RiskLevelEnum.INCERTO
-
-
-# ============================================================
-# Rotas
-# ============================================================
-
-@app.get("/")
-def root():
-    """
-    Health check simples para evitar o 404 na raiz.
-    Útil para você abrir http://127.0.0.1:8000 no navegador
-    e ver se o servidor está ok.
-    """
-    return {
-        "status": "ok",
-        "message": "pimple API rodando. Use POST /analyze ou /docs.",
-    }
-
-
-@app.post("/analyze")
-async def analyze(
-    image: UploadFile = File(...),
-    sex: SexEnum = Form(...),
-    localization: LocalizationEnum = Form(...),
-    age: Optional[int] = Form(None),
-):
-    """
-    Endpoint principal para análise de imagem.
-    Versão mock: não usa modelo real, apenas gera probabilidade fake.
-
-    Request: multipart/form-data com campos:
-      - image: arquivo .jpg ou .png
-      - sex: 'male' | 'female' | 'unknown'
-      - localization: conforme LocalizationEnum
-      - age: opcional (int)
-
-    Response: ver contrato em api/spec/analysis-contract.md
-    """
-
-    # -------------------------
-    # Validação do arquivo
-    # -------------------------
-    if image.content_type not in {"image/jpeg", "image/jpg", "image/png"}:
-        raise HTTPException(
-            status_code=400,
-            detail="Tipo de arquivo inválido. Use JPEG ou PNG.",
-        )
-
-    try:
-        content = await image.read()
-        if not content:
-            raise ValueError("Imagem vazia")
-    except Exception:
-        raise HTTPException(
-            status_code=400,
-            detail="Não foi possível ler a imagem enviada.",
-        )
-
-    # -------------------------
-    # "Predição" mock
-    # -------------------------
-    prob = mock_predict_probability(
-        sex=sex,
-        localization=localization,
-        age=age,
+    app = FastAPI(
+        title="pimple-api",
+        version="0.1.0",
+        docs_url="/docs",
+        redoc_url="/redoc",
+        openapi_url="/openapi.json",
     )
 
-    threshold = 0.62
-    risk_level = classify_risk(prob, threshold)
+    allow_origins = [o.strip() for o in settings.cors_origins.split(",") if o.strip()]
+    app.add_middleware(
+        CORSMiddleware,
+        allow_origins=allow_origins if allow_origins else ["*"],
+        allow_credentials=True,
+        allow_methods=["*"],
+        allow_headers=["*"],
+    )
 
-    analyzed_at = datetime.now(timezone.utc).isoformat()
+    init_db(settings.sqlite_path)
 
-    # -------------------------
-    # Monta resposta no formato combinado
-    # -------------------------
-    response = {
-        "prob_malignant": round(prob, 4),
-        "risk_level": risk_level.value,
-        "threshold": threshold,
-        "echo": {
-            "sex": sex.value,
-            "localization": localization.value,
-            "age": age,
-        },
-        "analyzed_at": analyzed_at,
-        "disclaimer": (
-            "Este aplicativo é apenas para fins educacionais e NÃO substitui "
-            "avaliação médica profissional. Em caso de dúvida, consulte um dermatologista."
-        ),
-    }
+    @app.get("/api/health", response_model=HealthResponse)
+    def health():
+        return {"status": "ok"}
 
-    return response
+    @app.get("/api/version", response_model=VersionResponse)
+    def version():
+        return {"name": "pimple-api", "version": app.version}
+
+    # ---- DATASET ----
+    @app.get("/api/dataset/summary", response_model=DatasetSummaryResponse)
+    def dataset_summary():
+        return get_dataset_summary(settings)
+
+    @app.get("/api/dataset/items", response_model=DatasetItemsResponse)
+    def dataset_items(
+        limit: int = Query(default=24, ge=1, le=200),
+        offset: int = Query(default=0, ge=0),
+        query: str = Query(default=""),
+    ):
+        return list_dataset_items(settings, limit=limit, offset=offset, query=query)
+
+    @app.get("/api/dataset/item/{item_id}", response_model=DatasetItemDetailResponse)
+    def dataset_item_detail(item_id: str):
+        item = get_dataset_item(settings, item_id)
+        if not item:
+            raise HTTPException(status_code=404, detail="Item not found")
+        return item
+
+    @app.get("/api/image/{item_id}")
+    def dataset_image(item_id: str):
+        file_path = get_image_file(settings, item_id)
+        if not file_path:
+            raise HTTPException(status_code=404, detail="Image not found")
+        return FileResponse(file_path)
+
+    @app.get("/api/mask/{item_id}")
+    def dataset_mask(item_id: str):
+        file_path = get_mask_file(settings, item_id)
+        if not file_path:
+            raise HTTPException(status_code=404, detail="Mask not found")
+        return FileResponse(file_path)
+
+    # ---- PREDICTION (MOCK) ----
+    @app.post("/api/predict", response_model=PredictResponse)
+    async def predict(file: UploadFile = File(...)):
+        return await run_dummy_predict(settings, file)
+
+    @app.get("/api/predictions", response_model=PredictionsListResponse)
+    def predictions_list(
+        limit: int = Query(default=20, ge=1, le=200),
+        offset: int = Query(default=0, ge=0),
+    ):
+        items, total = list_predictions(settings.sqlite_path, limit=limit, offset=offset)
+        # tira o campo interno image_relpath
+        items = [{k: v for k, v in it.items() if k != "image_relpath"} for it in items]
+        return {"items": items, "total": total}
+
+    @app.get("/api/predictions/{prediction_id}", response_model=PredictionDetailResponse)
+    def predictions_detail(prediction_id: str):
+        item = get_prediction(settings.sqlite_path, prediction_id=prediction_id)
+        if not item:
+            raise HTTPException(status_code=404, detail="Prediction not found")
+        item.pop("image_relpath", None)
+        return item
+
+    @app.get("/api/predictions/{prediction_id}/image")
+    def prediction_image(prediction_id: str):
+        item = get_prediction(settings.sqlite_path, prediction_id=prediction_id)
+        if not item:
+            raise HTTPException(status_code=404, detail="Prediction not found")
+
+        rel = item.get("image_relpath", "")
+        api_dir = Path(__file__).resolve().parent  # .../pimple/api
+        fp = (api_dir / rel).resolve() if rel else None
+        if not fp or not fp.exists():
+            raise HTTPException(status_code=404, detail="Stored image not found")
+
+        return FileResponse(str(fp))
+
+    @app.delete("/api/predictions")
+    def predictions_clear():
+        relpaths = clear_predictions(settings.sqlite_path)
+
+        api_dir = Path(__file__).resolve().parent  # .../pimple/api
+        deleted = 0
+        for rel in relpaths:
+            try:
+                fp = (api_dir / rel).resolve()
+                if fp.exists() and fp.is_file():
+                    fp.unlink()
+                    deleted += 1
+            except Exception:
+                pass
+
+        return {"deleted_files": deleted, "deleted_rows": len(relpaths)}
+
+    return app
+
+
+app = create_app()
