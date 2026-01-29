@@ -1,10 +1,22 @@
 export const API_BASE =
-  (import.meta as any).env?.VITE_API_BASE_URL?.replace(/\/$/, "") ||
-  "http://localhost:8000";
+  (import.meta as any).env?.VITE_API_BASE || "http://localhost:8000";
 
-export async function apiGet<T>(path: string): Promise<T> {
-  const url = `${API_BASE}${path.startsWith("/") ? "" : "/"}${path}`;
-  const res = await fetch(url, { headers: { Accept: "application/json" } });
-  if (!res.ok) throw new Error(`GET ${url} -> ${res.status}`);
+async function request<T>(path: string, init?: RequestInit): Promise<T> {
+  const url = `${API_BASE}${path}`;
+  const res = await fetch(url, init);
+
+  if (!res.ok) {
+    const text = await res.text().catch(() => "");
+    throw new Error(`HTTP ${res.status} ${res.statusText} :: ${text}`);
+  }
+
   return (await res.json()) as T;
+}
+
+export async function apiGet<T>(path: string) {
+  return request<T>(path, { method: "GET" });
+}
+
+export async function apiPostForm<T>(path: string, form: FormData) {
+  return request<T>(path, { method: "POST", body: form });
 }

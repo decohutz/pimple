@@ -1,5 +1,7 @@
-from typing import List, Optional
-from pydantic import BaseModel
+from __future__ import annotations
+
+from typing import Any, Dict, List, Optional
+from pydantic import BaseModel, Field
 
 
 class HealthResponse(BaseModel):
@@ -33,23 +35,25 @@ class DatasetItemDetailResponse(BaseModel):
     image_filename: Optional[str] = None
     mask_filename: Optional[str] = None
     has_mask: bool
-    meta: dict = {}
+    meta: Dict[str, Any] = Field(default_factory=dict)
 
 
 class PredictResponse(BaseModel):
-    prediction_id: str
-    created_at: str
+    id: str
     filename: str
     label: str
     score: float
+    created_at: str
+    image_url: str
 
 
 class PredictionItem(BaseModel):
-    prediction_id: str
-    created_at: str
+    id: str
     filename: str
     label: str
     score: float
+    created_at: str
+    image_url: str
 
 
 class PredictionsListResponse(BaseModel):

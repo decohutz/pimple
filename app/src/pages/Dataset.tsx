@@ -122,6 +122,42 @@ export default function Dataset() {
     return `${API_BASE}/api/mask/${encodeURIComponent(id)}`;
   }
 
+  function Chip({ text }: { text: string }) {
+    return (
+      <span className="inline-flex items-center rounded-full border border-slate-200 bg-white px-2.5 py-1 text-xs text-slate-700">
+        {text}
+      </span>
+    );
+  }
+
+  function MetaTable({ meta }: { meta: Record<string, any> }) {
+    const entries = Object.entries(meta || {})
+      .filter(([k]) => !["positive_classes", "target", "target_pretty"].includes(k))
+      .filter(([, v]) => v !== "" && v !== null && v !== undefined);
+
+    if (entries.length === 0) return <div className="text-slate-500 text-sm">Sem metadados no CSV.</div>;
+
+    return (
+      <div className="rounded-2xl border border-slate-200 overflow-hidden">
+        <div className="bg-slate-50 px-3 py-2 text-xs font-semibold text-slate-600 border-b border-slate-200">
+          Dados do CSV
+        </div>
+        <div className="max-h-[260px] overflow-auto bg-white">
+          <table className="w-full text-sm">
+            <tbody>
+              {entries.map(([k, v]) => (
+                <tr key={k} className="border-b border-slate-100 last:border-b-0">
+                  <td className="px-3 py-2 text-slate-600 w-1/2">{k}</td>
+                  <td className="px-3 py-2 text-slate-900">{String(v)}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="space-y-6">
       <div>
@@ -133,12 +169,8 @@ export default function Dataset() {
 
       {error ? (
         <div className="rounded-2xl border border-red-200 bg-red-50 p-4 text-red-900">
-          <div className="font-semibold">Erro ao conectar no backend</div>
+          <div className="font-semibold">Erro</div>
           <div className="text-sm opacity-80 mt-1">{error}</div>
-          <div className="text-xs opacity-70 mt-2">
-            Teste direto no navegador: http://localhost:8000/api/health e
-            http://localhost:8000/api/debug/dataset
-          </div>
         </div>
       ) : null}
 
@@ -234,7 +266,7 @@ export default function Dataset() {
                 onClick={() => openDetail(item.id)}
                 className="text-left rounded-2xl border border-slate-200 bg-white shadow-soft overflow-hidden hover:shadow-md transition"
               >
-                <div className="aspect-square bg-slate-50 overflow-hidden relative">
+                <div className="aspect-square bg-slate-50 overflow-hidden">
                   <img
                     src={imageUrl(item.id)}
                     alt={item.id}
@@ -243,9 +275,6 @@ export default function Dataset() {
                       (e.currentTarget as HTMLImageElement).style.display = "none";
                     }}
                   />
-                  <div className="absolute inset-0 flex items-center justify-center text-slate-400 text-sm">
-                    (preview)
-                  </div>
                 </div>
                 <div className="p-3">
                   <div className="text-sm font-semibold">{item.id}</div>
@@ -320,6 +349,43 @@ export default function Dataset() {
               <div><b>Máscara:</b> {selectedDetail.mask_filename ?? "—"}</div>
             </div>
 
+            {/* BLOCO CSV */}
+            <div className="rounded-2xl border border-slate-200 bg-white p-4">
+              <div className="text-xs font-semibold text-slate-600 mb-2">CSV</div>
+
+              {(() => {
+                const meta = (selectedDetail.meta || {}) as Record<string, any>;
+                const positives = Array.isArray(meta["positive_classes"]) ? meta["positive_classes"] : [];
+                const targetPretty = meta["target_pretty"] || meta["target"] || "";
+
+                return (
+                  <div className="space-y-3">
+                    <div className="text-sm">
+                      <span className="text-slate-600">Classe (CSV): </span>
+                      <span className="font-semibold text-slate-900">
+                        {targetPretty ? String(targetPretty) : "—"}
+                      </span>
+                    </div>
+
+                    {positives.length > 0 ? (
+                      <div className="flex flex-wrap gap-2">
+                        {positives.map((c: string) => (
+                          <Chip key={c} text={c} />
+                        ))}
+                      </div>
+                    ) : (
+                      <div className="text-sm text-slate-500">
+                        Nenhuma classe “1” detectada no CSV para esse item.
+                      </div>
+                    )}
+
+                    <MetaTable meta={meta} />
+                  </div>
+                );
+              })()}
+            </div>
+
+            {/* IMAGEM / MASK */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div className="rounded-2xl border border-slate-200 overflow-hidden bg-slate-50">
                 <div className="p-2 text-xs text-slate-500 border-b border-slate-200 bg-white">
