@@ -28,6 +28,28 @@ jupyter>=1.0.0
 notebook>=7.2.0
 
 ############################
+# Jupyter runtime (necessário para notebooks)
+############################
+ipython>=8.20
+ipykernel>=6.29
+matplotlib-inline>=0.1.7
+tqdm>=4.66
+
+############################
 # Imagens
 ############################
 Pillow>=10.3.0
+
+############################
+# Deep Learning (GPU - PyTorch + CUDA)
+############################
+# CUDA index do PyTorch (troque cu126 -> cu124/cu128 se precisar)
+--extra-index-url https://download.pytorch.org/whl/cu126
+
+# Trinca compatível (evita mismatch torch/torchvision/torchaudio)
+torch==2.10.0+cu126
+torchvision==0.25.0+cu126
+torchaudio==2.10.0+cu126
+
+# Model zoo (CNNs pré-treinadas: EfficientNet/ResNet/MobileNet etc.)
+timm>=1.0.0
