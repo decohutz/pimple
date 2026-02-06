@@ -2,13 +2,18 @@ import React, { useEffect, useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import StatusBanner from "../components/StatusBanner";
 import StatCard from "../components/StatCard";
-import { Card, CardContent, CardHeader } from "../components/Card";
+import { Card, CardContent } from "../components/Card";
 import { Button } from "../components/Button";
-import CodeBlock from "../components/CodeBlock";
 import Modal from "../components/Modal";
 import { apiGet } from "../api/client";
 import { listPredictions } from "../lib/storage";
-import { Database, FileText, Activity, Microscope, History as HistoryIcon } from "lucide-react";
+import {
+  Database,
+  FileText,
+  Activity,
+  Microscope,
+  History as HistoryIcon,
+} from "lucide-react";
 
 export default function Dashboard() {
   const nav = useNavigate();
@@ -55,22 +60,30 @@ export default function Dashboard() {
             onAction={() => setDetailsOpen(true)}
             variant="danger"
           />
-          <Modal open={detailsOpen} title="Detalhes de Conexão" onClose={() => setDetailsOpen(false)}>
+          <Modal
+            open={detailsOpen}
+            title="Detalhes de Conexão"
+            onClose={() => setDetailsOpen(false)}
+          >
             <div className="space-y-3 text-sm text-slate-700">
-              <div>Status: <b>OFFLINE</b></div>
-              <div>Erro: <span className="text-slate-600">{backendError || "sem detalhes"}</span></div>
+              <div>
+                Status: <b>OFFLINE</b>
+              </div>
+              <div>
+                Erro:{" "}
+                <span className="text-slate-600">
+                  {backendError || "sem detalhes"}
+                </span>
+              </div>
               <div className="text-slate-500">
-                (Tudo bem: este protótipo funciona sem backend. O banner só avisa conexão.)
+                (Tudo bem: este protótipo funciona sem backend. O banner só avisa
+                conexão.)
               </div>
             </div>
           </Modal>
         </>
       ) : (
-        <StatusBanner
-          title="Backend conectado"
-          description="Healthcheck OK"
-          variant="success"
-        />
+        <StatusBanner title="Backend conectado" description="Healthcheck OK" variant="success" />
       )}
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
@@ -98,7 +111,9 @@ export default function Dashboard() {
             <div className="text-sm text-slate-600">
               Navegue pelas imagens e máscaras do dataset de lesões
             </div>
-            <Button className="w-full" onClick={() => nav("/dataset")}>Acessar</Button>
+            <Button className="w-full" onClick={() => nav("/dataset")}>
+              Acessar
+            </Button>
           </CardContent>
         </Card>
 
@@ -111,7 +126,11 @@ export default function Dashboard() {
             <div className="text-sm text-slate-600">
               Faça upload de uma imagem e execute uma predição
             </div>
-            <Button variant="secondary" className="w-full" onClick={() => nav("/inference")}>
+            <Button
+              variant="secondary"
+              className="w-full"
+              onClick={() => nav("/inference")}
+            >
               Acessar
             </Button>
           </CardContent>
@@ -123,33 +142,19 @@ export default function Dashboard() {
               <HistoryIcon size={18} />
             </div>
             <div className="text-lg font-semibold">Ver Histórico</div>
-            <div className="text-sm text-slate-600">Consulte as predições anteriores</div>
-            <Button variant="secondary" className="w-full" onClick={() => nav("/history")}>
+            <div className="text-sm text-slate-600">
+              Consulte as predições anteriores
+            </div>
+            <Button
+              variant="secondary"
+              className="w-full"
+              onClick={() => nav("/history")}
+            >
               Acessar
             </Button>
           </CardContent>
         </Card>
       </div>
-
-      <Card>
-        <CardHeader>
-          <div className="text-lg font-semibold">Como usar este protótipo</div>
-        </CardHeader>
-        <CardContent className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <div className="space-y-2">
-            <div className="text-sm font-semibold">1. Inicie o Backend</div>
-            <CodeBlock>{`cd pimple/api
-pip install -r requirements.txt
-uvicorn main:app --reload --port 8000`}</CodeBlock>
-          </div>
-          <div className="space-y-2">
-            <div className="text-sm font-semibold">2. Configure o .env</div>
-            <CodeBlock>{`DATASET_IMAGES_DIR=../data/raw/lesions/images/
-DATASET_MASKS_DIR=../data/raw/lesions/masks/
-DATASET_CSV_PATH=../data/raw/lesions/GroundTruth.csv`}</CodeBlock>
-          </div>
-        </CardContent>
-      </Card>
     </div>
   );
 }
