@@ -47,7 +47,7 @@ export default function Dashboard() {
       <div>
         <h1 className="text-4xl font-semibold">Dashboard</h1>
         <p className="mt-2 text-slate-600">
-          Bem-vindo ao Pimple — seu protótipo para análise de lesões de pele
+          Bem-vindo ao Moles — seu protótipo para análise de lesões de pele
         </p>
       </div>
 

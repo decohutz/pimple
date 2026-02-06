@@ -37,7 +37,7 @@ export default function AppShell() {
               <Microscope size={18} />
             </div>
             <div className="leading-tight">
-              <div className="font-semibold">Pimple</div>
+              <div className="font-semibold">Moles</div>
               <div className="text-xs text-slate-500">Skin Lesion Analysis</div>
             </div>
           </div>
