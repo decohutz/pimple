@@ -1,40 +1,29 @@
-import React, { useEffect, useState } from "react";
-import { Card, CardContent, CardHeader } from "../components/Card";
-import { apiGet } from "../api/client";
-import { Badge } from "../components/Badge";
+import React from "react";
+import HowToUsePrototype from "../components/HowToUsePrototype";
+import { Card, CardContent } from "../components/Card";
 
 export default function About() {
-  const [backendOk, setBackendOk] = useState(false);
-
-  useEffect(() => {
-    apiGet<{ status: string }>("/api/health")
-      .then(() => setBackendOk(true))
-      .catch(() => setBackendOk(false));
-  }, []);
-
   return (
     <div className="space-y-6">
       <div>
         <h1 className="text-4xl font-semibold">Sobre</h1>
-        <p className="mt-2 text-slate-600">Status do protótipo e informações gerais</p>
+        <p className="mt-2 text-slate-600">
+          Pimple é um protótipo educacional para exploração de dataset (imagens/máscaras/CSV) e execução
+          de inferências (atualmente mockadas), com histórico persistido no backend.
+        </p>
       </div>
 
       <Card>
-        <CardHeader>
-          <div className="text-xl font-semibold">Status</div>
-        </CardHeader>
         <CardContent className="space-y-3">
-          <div className="flex flex-wrap items-center gap-2">
-            <Badge>{backendOk ? "Backend: conectado" : "Backend: desconectado"}</Badge>
-            <Badge>Modo: visual + demo</Badge>
-          </div>
-
-          <div className="text-sm text-slate-600">
-            Este frontend é independente do resto do repositório.
-            Quando você quiser, plugamos as rotas reais do FastAPI sem mudar o visual.
-          </div>
+          <div className="font-semibold text-slate-900">Aviso importante</div>
+          <p className="text-sm text-slate-600">
+            Este sistema não realiza diagnóstico médico e não substitui avaliação clínica.
+            Para qualquer suspeita, procure um(a) dermatologista.
+          </p>
         </CardContent>
       </Card>
+
+      <HowToUsePrototype />
     </div>
   );
 }
