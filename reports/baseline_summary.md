@@ -1,9 +1,9 @@
 # Baseline Summary - pimple (Notebook 03)
 
-Created (UTC): 2026-01-26T17:01:45.288442+00:00
+Created (UTC): 2026-04-15T20:54:51.920983+00:00
 Seed (notebook): 42
 Seed (splits_report): 42
-splits_report_sha256: 44a08182246ae5eaed03bf19e752a615f0825b48f94e796310ca517e215f2534
+splits_report_sha256: 80e755171991194953fd86b9af621d754616456722b96670193f9bd756952921
 
 ## Target contract (effective)
 - mode: single_label
@@ -12,8 +12,8 @@ splits_report_sha256: 44a08182246ae5eaed03bf19e752a615f0825b48f94e796310ca517e21
 - n_classes: 7
 - classes: mel, nv, bcc, akiec, bkl, df, vasc
 
-## Effective config (eliminate magic)
-- target_config_effective.json: C:\Users\win\Documents\GitHub\pimple\data\processed\target_config_effective.json
+## Effective config
+- target_config_resolved.json: C:\Users\win\Documents\GitHub\pimple\data\processed\target_config_effective.json
   - Recommendation: use this file from Notebook 04 onward.
 
 ## Target integrity (one-hot)
@@ -34,3 +34,6 @@ splits_report_sha256: 44a08182246ae5eaed03bf19e752a615f0825b48f94e796310ca517e21
 - reports/baseline_summary.md
 - reports/baseline_examples.png
 - reports/baseline_confusion_matrix.png
+- data/processed/baseline_package/preprocess_config.json
+- data/processed/baseline_package/inference_config.json
+- data/processed/baseline_package/label_map.json
