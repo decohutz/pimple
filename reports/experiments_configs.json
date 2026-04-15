@@ -1,8 +1,8 @@
 {
   "meta": {
-    "generated_at": "2026-01-27 16:26:25",
-    "project_root": "C:\\Users\\win\\Documents\\GitHub",
-    "target_config_source": "pimple\\data\\processed\\target_config_effective.json",
+    "generated_at": "2026-04-14 20:57:22",
+    "project_root": "C:\\Users\\win\\Documents\\GitHub\\pimple",
+    "target_config_source": "data\\processed\\target_config_effective.json",
     "label_cols": [
       "mel",
       "nv",
@@ -23,9 +23,9 @@
       "vasc"
     ],
     "seed": 42,
-    "device": "cpu",
+    "default_device_available": "cuda",
     "torch_available": true,
-    "torchvision_available": false,
+    "torchvision_available": true,
     "mask_policy": {
       "mask_coverage_ratio_in_clean": 1.0,
       "mask_required_for_inclusion": false,
@@ -50,7 +50,8 @@
       },
       "segmentation_considered": true
     },
-    "note": "sklearn-only (torchvision ausente). Resultados são sanity/seleção preliminar."
+    "selection_mode": "sklearn_only_preliminary",
+    "note": "Registry atual contém apenas experimentos sklearn/sanity. Resultados devem ser interpretados como seleção preliminar/baseline."
   },
   "experiments": {
     "sk_logreg_32": {
@@ -59,10 +60,11 @@
       "class_weight": null,
       "max_iter": 250,
       "seed": 42,
+      "selection_scope": "sanity_reference",
+      "notes": "Baseline rápido e simples.",
       "exp_id": "sk_logreg_32",
-      "target_config_source": "pimple\\data\\processed\\target_config_effective.json",
-      "project_root": "C:\\Users\\win\\Documents\\GitHub",
-      "device": "cpu",
+      "target_config_source": "data\\processed\\target_config_effective.json",
+      "project_root": "C:\\Users\\win\\Documents\\GitHub\\pimple",
       "labels": [
         "mel",
         "nv",
@@ -95,7 +97,8 @@
           ]
         },
         "segmentation_considered": true
-      }
+      },
+      "execution_device": "cpu"
     },
     "sk_logreg_32_bal": {
       "family": "sklearn_logreg_flatten",
@@ -103,10 +106,11 @@
       "class_weight": "balanced",
       "max_iter": 250,
       "seed": 42,
+      "selection_scope": "sanity_reference",
+      "notes": "Mesmo baseline com class_weight=balanced.",
       "exp_id": "sk_logreg_32_bal",
-      "target_config_source": "pimple\\data\\processed\\target_config_effective.json",
-      "project_root": "C:\\Users\\win\\Documents\\GitHub",
-      "device": "cpu",
+      "target_config_source": "data\\processed\\target_config_effective.json",
+      "project_root": "C:\\Users\\win\\Documents\\GitHub\\pimple",
       "labels": [
         "mel",
         "nv",
@@ -139,7 +143,8 @@
           ]
         },
         "segmentation_considered": true
-      }
+      },
+      "execution_device": "cpu"
     },
     "sk_logreg_64": {
       "family": "sklearn_logreg_flatten",
@@ -147,10 +152,11 @@
       "class_weight": null,
       "max_iter": 250,
       "seed": 42,
+      "selection_scope": "sanity_reference",
+      "notes": "Aumenta resolução mantendo pipeline linear.",
       "exp_id": "sk_logreg_64",
-      "target_config_source": "pimple\\data\\processed\\target_config_effective.json",
-      "project_root": "C:\\Users\\win\\Documents\\GitHub",
-      "device": "cpu",
+      "target_config_source": "data\\processed\\target_config_effective.json",
+      "project_root": "C:\\Users\\win\\Documents\\GitHub\\pimple",
       "labels": [
         "mel",
         "nv",
@@ -183,7 +189,8 @@
           ]
         },
         "segmentation_considered": true
-      }
+      },
+      "execution_device": "cpu"
     },
     "sk_logreg_64_bal": {
       "family": "sklearn_logreg_flatten",
@@ -191,10 +198,11 @@
       "class_weight": "balanced",
       "max_iter": 250,
       "seed": 42,
+      "selection_scope": "sanity_reference",
+      "notes": "Teste de resolução maior + balanced.",
       "exp_id": "sk_logreg_64_bal",
-      "target_config_source": "pimple\\data\\processed\\target_config_effective.json",
-      "project_root": "C:\\Users\\win\\Documents\\GitHub",
-      "device": "cpu",
+      "target_config_source": "data\\processed\\target_config_effective.json",
+      "project_root": "C:\\Users\\win\\Documents\\GitHub\\pimple",
       "labels": [
         "mel",
         "nv",
@@ -227,18 +235,21 @@
           ]
         },
         "segmentation_considered": true
-      }
+      },
+      "execution_device": "cpu"
     },
     "svm_64_bal": {
       "family": "sklearn_linearsvc_flatten",
       "input_size": 64,
       "class_weight": "balanced",
       "C": 1.0,
+      "max_iter": 3000,
       "seed": 42,
+      "selection_scope": "sanity_reference",
+      "notes": "Família linear alternativa para comparação rápida.",
       "exp_id": "svm_64_bal",
-      "target_config_source": "pimple\\data\\processed\\target_config_effective.json",
-      "project_root": "C:\\Users\\win\\Documents\\GitHub",
-      "device": "cpu",
+      "target_config_source": "data\\processed\\target_config_effective.json",
+      "project_root": "C:\\Users\\win\\Documents\\GitHub\\pimple",
       "labels": [
         "mel",
         "nv",
@@ -271,7 +282,8 @@
           ]
         },
         "segmentation_considered": true
-      }
+      },
+      "execution_device": "cpu"
     }
   }
 }
