@@ -1,0 +1,46 @@
+{
+  "success": {
+    "task": "classification",
+    "model_version": "cls_resnet50_img224_seed42_20260415_161053",
+    "top_prediction": {
+      "label": "mel",
+      "score": 0.4385339021682739
+    },
+    "top_k": [
+      {
+        "label": "mel",
+        "score": 0.4385339021682739
+      },
+      {
+        "label": "nv",
+        "score": 0.22441184520721436
+      },
+      {
+        "label": "df",
+        "score": 0.10974466800689697
+      }
+    ],
+    "preprocess": {
+      "size": [
+        224,
+        224
+      ],
+      "normalize_mean": [
+        0.485,
+        0.456,
+        0.406
+      ],
+      "normalize_std": [
+        0.229,
+        0.224,
+        0.225
+      ]
+    }
+  },
+  "error": {
+    "error": {
+      "code": "INVALID_INPUT",
+      "message": "Arquivo inválido ou formato não suportado."
+    }
+  }
+}

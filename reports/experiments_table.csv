@@ -1,6 +1,6 @@
-experiment_id,family,input_size,normalization,class_weight,seed,device,val_accuracy,val_f1_macro,runtime_sec,val_confusion_matrix_path,error,rank_f1
-sk_logreg_32,sklearn_logreg_flatten,32,,,42,cpu,0.6571238348868176,0.38160003715417934,30.75023889541626,pimple\reports\plots\cm_sk_logreg_32.png,,1.0
-sk_logreg_32_bal,sklearn_logreg_flatten,32,,balanced,42,cpu,0.5772303595206392,0.36343033310923706,31.51781463623047,pimple\reports\plots\cm_sk_logreg_32_bal.png,,2.0
-sk_logreg_64_bal,sklearn_logreg_flatten,64,,balanced,42,cpu,0.6171770972037284,0.3506980386485289,40.96692371368408,pimple\reports\plots\cm_sk_logreg_64_bal.png,,3.0
-sk_logreg_64,sklearn_logreg_flatten,64,,,42,cpu,0.6338215712383488,0.3360207150885139,42.925692319869995,pimple\reports\plots\cm_sk_logreg_64.png,,4.0
-svm_64_bal,sklearn_linearsvc_flatten,64,,balanced,42,cpu,0.6218375499334221,0.29746953409041493,265.27095127105713,pimple\reports\plots\cm_svm_64_bal.png,,5.0
+experiment_id,family,selection_scope,input_size,normalization,class_weight,seed,device,val_accuracy,val_f1_macro,runtime_sec,val_confusion_matrix_path,error,rank_f1
+sk_logreg_32,sklearn_logreg_flatten,sanity_reference,32,,,42,cpu,0.6571238348868176,0.38160003715417934,30.036513566970825,reports\plots\cm_sk_logreg_32.png,,1.0
+sk_logreg_32_bal,sklearn_logreg_flatten,sanity_reference,32,,balanced,42,cpu,0.5772303595206392,0.36343033310923706,29.408504724502563,reports\plots\cm_sk_logreg_32_bal.png,,2.0
+sk_logreg_64_bal,sklearn_logreg_flatten,sanity_reference,64,,balanced,42,cpu,0.6171770972037284,0.3506980386485289,38.356751918792725,reports\plots\cm_sk_logreg_64_bal.png,,3.0
+sk_logreg_64,sklearn_logreg_flatten,sanity_reference,64,,,42,cpu,0.6338215712383488,0.3360207150885139,38.37238955497742,reports\plots\cm_sk_logreg_64.png,,4.0
+svm_64_bal,sklearn_linearsvc_flatten,sanity_reference,64,,balanced,42,cpu,0.6145139813581891,0.2867490652154273,571.0093834400177,reports\plots\cm_svm_64_bal.png,,5.0
