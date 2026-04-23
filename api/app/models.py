@@ -1,36 +1,40 @@
 from __future__ import annotations
 
 from typing import Any, Dict, List, Optional
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, ConfigDict
 
 
-class HealthResponse(BaseModel):
+class APIBaseModel(BaseModel):
+    model_config = ConfigDict(protected_namespaces=())
+
+
+class HealthResponse(APIBaseModel):
     status: str
 
 
-class VersionResponse(BaseModel):
+class VersionResponse(APIBaseModel):
     name: str
     version: str
 
 
-class DatasetSummaryResponse(BaseModel):
+class DatasetSummaryResponse(APIBaseModel):
     num_images: int
     num_masks: int
     csv_rows: int
     columns: List[str]
 
 
-class DatasetItem(BaseModel):
+class DatasetItem(APIBaseModel):
     id: str
     has_mask: bool
 
 
-class DatasetItemsResponse(BaseModel):
+class DatasetItemsResponse(APIBaseModel):
     items: List[DatasetItem]
     total: int
 
 
-class DatasetItemDetailResponse(BaseModel):
+class DatasetItemDetailResponse(APIBaseModel):
     id: str
     image_filename: Optional[str] = None
     mask_filename: Optional[str] = None
@@ -39,7 +43,7 @@ class DatasetItemDetailResponse(BaseModel):
 
 
 # -------- Legacy /api/predict --------
-class PredictResponse(BaseModel):
+class PredictResponse(APIBaseModel):
     id: str
     filename: str
     label: str
@@ -48,7 +52,7 @@ class PredictResponse(BaseModel):
     image_url: str
 
 
-class PredictionItem(BaseModel):
+class PredictionItem(APIBaseModel):
     id: str
     filename: str
     label: str
@@ -57,7 +61,7 @@ class PredictionItem(BaseModel):
     image_url: str
 
 
-class PredictionsListResponse(BaseModel):
+class PredictionsListResponse(APIBaseModel):
     items: List[PredictionItem]
     total: int
 
@@ -67,23 +71,23 @@ class PredictionDetailResponse(PredictionItem):
 
 
 # -------- New /api/analyze --------
-class TopPrediction(BaseModel):
+class TopPrediction(APIBaseModel):
     label: str
     score: float
 
 
-class TopKItem(BaseModel):
+class TopKItem(APIBaseModel):
     label: str
     score: float
 
 
-class PreprocessInfo(BaseModel):
+class PreprocessInfo(APIBaseModel):
     size: List[int]
     normalize_mean: Optional[List[float]] = None
     normalize_std: Optional[List[float]] = None
 
 
-class AnalyzeResponse(BaseModel):
+class AnalyzeResponse(APIBaseModel):
     task: str
     model_version: str
     top_prediction: TopPrediction
@@ -91,10 +95,10 @@ class AnalyzeResponse(BaseModel):
     preprocess: PreprocessInfo
 
 
-class ErrorDetail(BaseModel):
+class ErrorDetail(APIBaseModel):
     code: str
     message: str
 
 
-class ErrorResponse(BaseModel):
+class ErrorResponse(APIBaseModel):
     error: ErrorDetail

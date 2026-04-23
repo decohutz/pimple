@@ -7,7 +7,7 @@ import {
   type AnalyzeResponse,
   type AnalyzeErrorResponse,
 } from "../api/predictions";
-import { UploadCloud, Microscope } from "lucide-react";
+import { UploadCloud, Microscope, AlertTriangle } from "lucide-react";
 
 function isAnalyzeErrorResponse(
   value: AnalyzeResponse | AnalyzeErrorResponse
@@ -17,6 +17,30 @@ function isAnalyzeErrorResponse(
 
 function scoreToPct(score: number) {
   return `${(score * 100).toFixed(1)}%`;
+}
+
+function getConfidenceState(score: number) {
+  if (score < 0.3) {
+    return {
+      level: "low",
+      title: "Baixa confiança",
+      message:
+        "O modelo apresentou baixa confiança nesta imagem. O resultado deve ser interpretado com bastante cautela.",
+      className: "border-amber-200 bg-amber-50 text-amber-900",
+    };
+  }
+
+  if (score < 0.5) {
+    return {
+      level: "moderate",
+      title: "Confiança moderada",
+      message:
+        "A confiança da predição principal não é alta. O resultado é útil como referência, mas não deve ser tratado como conclusivo.",
+      className: "border-yellow-200 bg-yellow-50 text-yellow-900",
+    };
+  }
+
+  return null;
 }
 
 export default function Inference() {
@@ -29,6 +53,10 @@ export default function Inference() {
     if (!file) return "";
     return URL.createObjectURL(file);
   }, [file]);
+
+  const confidenceState = result
+    ? getConfidenceState(result.top_prediction.score)
+    : null;
 
   async function onAnalyze() {
     if (!file) return;
@@ -129,6 +157,18 @@ export default function Inference() {
               </div>
             ) : result ? (
               <div className="space-y-4">
+                {confidenceState ? (
+                  <div className={`rounded-2xl border p-4 ${confidenceState.className}`}>
+                    <div className="flex items-center gap-2 font-semibold">
+                      <AlertTriangle size={16} />
+                      {confidenceState.title}
+                    </div>
+                    <div className="mt-1 text-sm opacity-90">
+                      {confidenceState.message}
+                    </div>
+                  </div>
+                ) : null}
+
                 <div className="rounded-2xl border border-slate-200 bg-slate-50 p-4">
                   <div className="text-xs uppercase tracking-wide text-slate-500">
                     Predição principal
@@ -188,9 +228,10 @@ export default function Inference() {
                   </div>
                 ) : null}
 
-                <div className="text-xs text-slate-500">
-                  O modelo sempre tenta classificar a imagem em uma das classes conhecidas.
-                  Uma imagem válida pode não necessariamente pertencer ao domínio esperado.
+                <div className="rounded-2xl border border-slate-200 bg-slate-50 p-4 text-xs text-slate-500">
+                  Esta análise é educacional e não clínica. O modelo sempre tenta
+                  classificar a imagem em uma das classes conhecidas. Imagens fora do
+                  domínio esperado ainda podem receber uma classe.
                 </div>
               </div>
             ) : (

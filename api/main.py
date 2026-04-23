@@ -15,6 +15,8 @@ from app.models import (
     PredictResponse,
     PredictionsListResponse,
     PredictionDetailResponse,
+    AnalyzeResponse,
+    ErrorResponse,
 )
 from app.dataset import (
     get_dataset_summary,
@@ -65,7 +67,6 @@ def create_app() -> FastAPI:
                 runtime.package_dir,
             )
         except Exception as e:
-            # não impede a API de subir, mas deixa claro no log
             print("[startup] falha ao carregar modelo:", repr(e))
 
     @app.get("/api/health", response_model=HealthResponse)
@@ -111,7 +112,16 @@ def create_app() -> FastAPI:
         return FileResponse(file_path)
 
     # ---- REAL INFERENCE CONTRACT (new) ----
-    @app.post("/api/analyze")
+    @app.post(
+        "/api/analyze",
+        response_model=AnalyzeResponse,
+        responses={
+            400: {
+                "model": ErrorResponse,
+                "description": "Invalid input or inference failure",
+            }
+        },
+    )
     async def analyze(file: UploadFile = File(...)):
         status_code, payload = await run_real_analyze(settings, file)
         if status_code >= 400:
