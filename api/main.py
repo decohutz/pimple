@@ -17,6 +17,7 @@ from app.models import (
     PredictionDetailResponse,
     AnalyzeResponse,
     ErrorResponse,
+    ModelStatusResponse,
 )
 from app.dataset import (
     get_dataset_summary,
@@ -27,6 +28,7 @@ from app.dataset import (
 )
 from app.predict import (
     get_model_runtime,
+    get_model_status,
     run_real_analyze,
     run_real_predict_legacy,
 )
@@ -37,7 +39,7 @@ def create_app() -> FastAPI:
 
     app = FastAPI(
         title="pimple-api",
-        version="0.2.0",
+        version="0.3.0",
         docs_url="/docs",
         redoc_url="/redoc",
         openapi_url="/openapi.json",
@@ -61,6 +63,8 @@ def create_app() -> FastAPI:
             print(
                 "[startup] modelo carregado:",
                 runtime.model_version,
+                "| source:",
+                runtime.source,
                 "| model_name:",
                 runtime.model_name,
                 "| package_dir:",
@@ -76,6 +80,10 @@ def create_app() -> FastAPI:
     @app.get("/api/version", response_model=VersionResponse)
     def version():
         return {"name": "pimple-api", "version": app.version}
+
+    @app.get("/api/model/status", response_model=ModelStatusResponse)
+    def model_status():
+        return get_model_status(settings)
 
     # ---- DATASET ----
     @app.get("/api/dataset/summary", response_model=DatasetSummaryResponse)
@@ -128,7 +136,7 @@ def create_app() -> FastAPI:
             return JSONResponse(status_code=status_code, content=payload)
         return payload
 
-    # ---- LEGACY PREDICTION (compatibility mode, now backed by real inference) ----
+    # ---- LEGACY PREDICTION ----
     @app.post("/api/predict", response_model=PredictResponse)
     async def predict(file: UploadFile = File(...)):
         return await run_real_predict_legacy(settings, file)

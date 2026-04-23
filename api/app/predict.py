@@ -2,7 +2,6 @@ from __future__ import annotations
 
 import io
 import json
-import shutil
 from dataclasses import dataclass
 from datetime import datetime, timezone
 from pathlib import Path
@@ -29,6 +28,10 @@ ALLOWED_EXTS = {".jpg", ".jpeg", ".png", ".webp"}
 @dataclass
 class ModelRuntime:
     package_dir: Path
+    source: str                 # "active_model" | "candidate_fallback"
+    active_model_json_exists: bool
+    active_model_json_path: Path
+    candidate_fallback: Optional[str]
     model_name: str
     model_version: str
     img_size: int
@@ -120,23 +123,40 @@ def _json_load(path: Path) -> Any:
         return json.load(f)
 
 
-def _resolve_package_dir(settings: Settings) -> Tuple[Path, str]:
-    active_model_path = Path(settings.active_model_json)
+def _resolve_package_dir(settings: Settings) -> Dict[str, Any]:
+    active_model_path = Path(settings.active_model_json).resolve()
+    active_exists = active_model_path.exists()
 
-    if active_model_path.exists():
+    if active_exists:
         payload = _json_load(active_model_path)
         package_dir = Path(payload["package_dir"]).resolve()
         exp_name = str(payload.get("exp_name", package_dir.name))
-        return package_dir, exp_name
+        return {
+            "package_dir": package_dir,
+            "exp_name": exp_name,
+            "source": "active_model",
+            "active_model_json_exists": True,
+            "active_model_json_path": active_model_path,
+            "candidate_fallback": settings.candidate_exp_name or None,
+        }
 
     package_dir = (Path(settings.candidates_root) / settings.candidate_exp_name).resolve()
-    return package_dir, settings.candidate_exp_name
+    return {
+        "package_dir": package_dir,
+        "exp_name": settings.candidate_exp_name,
+        "source": "candidate_fallback",
+        "active_model_json_exists": False,
+        "active_model_json_path": active_model_path,
+        "candidate_fallback": settings.candidate_exp_name,
+    }
 
 
 def get_model_runtime(settings: Settings) -> ModelRuntime:
     global _RUNTIME_CACHE
 
-    package_dir, exp_name = _resolve_package_dir(settings)
+    resolved = _resolve_package_dir(settings)
+    package_dir = resolved["package_dir"]
+    exp_name = resolved["exp_name"]
 
     if _RUNTIME_CACHE is not None and _RUNTIME_CACHE.package_dir == package_dir:
         return _RUNTIME_CACHE
@@ -204,6 +224,10 @@ def get_model_runtime(settings: Settings) -> ModelRuntime:
 
     _RUNTIME_CACHE = ModelRuntime(
         package_dir=package_dir,
+        source=resolved["source"],
+        active_model_json_exists=resolved["active_model_json_exists"],
+        active_model_json_path=resolved["active_model_json_path"],
+        candidate_fallback=resolved["candidate_fallback"],
         model_name=model_name,
         model_version=exp_name,
         img_size=img_size,
@@ -215,6 +239,22 @@ def get_model_runtime(settings: Settings) -> ModelRuntime:
         transform=transform,
     )
     return _RUNTIME_CACHE
+
+
+def get_model_status(settings: Settings) -> Dict[str, Any]:
+    runtime = get_model_runtime(settings)
+    return {
+        "status": "loaded",
+        "source": runtime.source,
+        "model_version": runtime.model_version,
+        "model_name": runtime.model_name,
+        "package_dir": str(runtime.package_dir),
+        "input_size": [runtime.img_size, runtime.img_size],
+        "classes": runtime.class_names,
+        "active_model_json_exists": runtime.active_model_json_exists,
+        "active_model_json_path": str(runtime.active_model_json_path),
+        "candidate_fallback": runtime.candidate_fallback,
+    }
 
 
 def _detect_ext(filename: str, content_type: str) -> str:

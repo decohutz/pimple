@@ -102,3 +102,17 @@ class ErrorDetail(APIBaseModel):
 
 class ErrorResponse(APIBaseModel):
     error: ErrorDetail
+
+
+# -------- Model status / registry --------
+class ModelStatusResponse(APIBaseModel):
+    status: str
+    source: str
+    model_version: str
+    model_name: str
+    package_dir: str
+    input_size: List[int]
+    classes: List[str]
+    active_model_json_exists: bool
+    active_model_json_path: str
+    candidate_fallback: Optional[str] = None
