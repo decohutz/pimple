@@ -2,7 +2,7 @@ from pathlib import Path
 
 from fastapi import FastAPI, UploadFile, File, Query, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi.responses import FileResponse
+from fastapi.responses import FileResponse, JSONResponse
 
 from app.settings import Settings
 from app.db import init_db, list_predictions, get_prediction, clear_predictions
@@ -15,6 +15,9 @@ from app.models import (
     PredictResponse,
     PredictionsListResponse,
     PredictionDetailResponse,
+    AnalyzeResponse,
+    ErrorResponse,
+    ModelStatusResponse,
 )
 from app.dataset import (
     get_dataset_summary,
@@ -23,7 +26,12 @@ from app.dataset import (
     get_image_file,
     get_mask_file,
 )
-from app.predict import run_dummy_predict
+from app.predict import (
+    get_model_runtime,
+    get_model_status,
+    run_real_analyze,
+    run_real_predict_legacy,
+)
 
 
 def create_app() -> FastAPI:
@@ -31,7 +39,7 @@ def create_app() -> FastAPI:
 
     app = FastAPI(
         title="pimple-api",
-        version="0.1.0",
+        version="0.3.0",
         docs_url="/docs",
         redoc_url="/redoc",
         openapi_url="/openapi.json",
@@ -48,6 +56,23 @@ def create_app() -> FastAPI:
 
     init_db(settings.sqlite_path)
 
+    @app.on_event("startup")
+    def warm_model():
+        try:
+            runtime = get_model_runtime(settings)
+            print(
+                "[startup] modelo carregado:",
+                runtime.model_version,
+                "| source:",
+                runtime.source,
+                "| model_name:",
+                runtime.model_name,
+                "| package_dir:",
+                runtime.package_dir,
+            )
+        except Exception as e:
+            print("[startup] falha ao carregar modelo:", repr(e))
+
     @app.get("/api/health", response_model=HealthResponse)
     def health():
         return {"status": "ok"}
@@ -55,6 +80,10 @@ def create_app() -> FastAPI:
     @app.get("/api/version", response_model=VersionResponse)
     def version():
         return {"name": "pimple-api", "version": app.version}
+
+    @app.get("/api/model/status", response_model=ModelStatusResponse)
+    def model_status():
+        return get_model_status(settings)
 
     # ---- DATASET ----
     @app.get("/api/dataset/summary", response_model=DatasetSummaryResponse)
@@ -90,10 +119,27 @@ def create_app() -> FastAPI:
             raise HTTPException(status_code=404, detail="Mask not found")
         return FileResponse(file_path)
 
-    # ---- PREDICTION (MOCK) ----
+    # ---- REAL INFERENCE CONTRACT (new) ----
+    @app.post(
+        "/api/analyze",
+        response_model=AnalyzeResponse,
+        responses={
+            400: {
+                "model": ErrorResponse,
+                "description": "Invalid input or inference failure",
+            }
+        },
+    )
+    async def analyze(file: UploadFile = File(...)):
+        status_code, payload = await run_real_analyze(settings, file)
+        if status_code >= 400:
+            return JSONResponse(status_code=status_code, content=payload)
+        return payload
+
+    # ---- LEGACY PREDICTION ----
     @app.post("/api/predict", response_model=PredictResponse)
     async def predict(file: UploadFile = File(...)):
-        return await run_dummy_predict(settings, file)
+        return await run_real_predict_legacy(settings, file)
 
     @app.get("/api/predictions", response_model=PredictionsListResponse)
     def predictions_list(
@@ -101,7 +147,6 @@ def create_app() -> FastAPI:
         offset: int = Query(default=0, ge=0),
     ):
         items, total = list_predictions(settings.sqlite_path, limit=limit, offset=offset)
-        # tira o campo interno image_relpath
         items = [{k: v for k, v in it.items() if k != "image_relpath"} for it in items]
         return {"items": items, "total": total}
 
@@ -120,7 +165,7 @@ def create_app() -> FastAPI:
             raise HTTPException(status_code=404, detail="Prediction not found")
 
         rel = item.get("image_relpath", "")
-        api_dir = Path(__file__).resolve().parent  # .../pimple/api
+        api_dir = Path(__file__).resolve().parent
         fp = (api_dir / rel).resolve() if rel else None
         if not fp or not fp.exists():
             raise HTTPException(status_code=404, detail="Stored image not found")
@@ -131,7 +176,7 @@ def create_app() -> FastAPI:
     def predictions_clear():
         relpaths = clear_predictions(settings.sqlite_path)
 
-        api_dir = Path(__file__).resolve().parent  # .../pimple/api
+        api_dir = Path(__file__).resolve().parent
         deleted = 0
         for rel in relpaths:
             try:
