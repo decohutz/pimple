@@ -1,6 +1,7 @@
+from contextlib import asynccontextmanager
 from pathlib import Path
 
-from fastapi import FastAPI, UploadFile, File, Query, HTTPException
+from fastapi import FastAPI, UploadFile, File, Query, HTTPException, Response
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import FileResponse, JSONResponse
 
@@ -37,27 +38,10 @@ from app.predict import (
 def create_app() -> FastAPI:
     settings = Settings()
 
-    app = FastAPI(
-        title="pimple-api",
-        version="0.3.0",
-        docs_url="/docs",
-        redoc_url="/redoc",
-        openapi_url="/openapi.json",
-    )
+    @asynccontextmanager
+    async def lifespan(app: FastAPI):
+        init_db(settings.sqlite_path)
 
-    allow_origins = [o.strip() for o in settings.cors_origins.split(",") if o.strip()]
-    app.add_middleware(
-        CORSMiddleware,
-        allow_origins=allow_origins if allow_origins else ["*"],
-        allow_credentials=True,
-        allow_methods=["*"],
-        allow_headers=["*"],
-    )
-
-    init_db(settings.sqlite_path)
-
-    @app.on_event("startup")
-    def warm_model():
         try:
             runtime = get_model_runtime(settings)
             print(
@@ -72,6 +56,26 @@ def create_app() -> FastAPI:
             )
         except Exception as e:
             print("[startup] falha ao carregar modelo:", repr(e))
+
+        yield
+
+    app = FastAPI(
+        title="pimple-api",
+        version="0.3.0",
+        docs_url="/docs",
+        redoc_url="/redoc",
+        openapi_url="/openapi.json",
+        lifespan=lifespan,
+    )
+
+    allow_origins = [o.strip() for o in settings.cors_origins.split(",") if o.strip()]
+    app.add_middleware(
+        CORSMiddleware,
+        allow_origins=allow_origins if allow_origins else ["*"],
+        allow_credentials=True,
+        allow_methods=["*"],
+        allow_headers=["*"],
+    )
 
     @app.get("/api/health", response_model=HealthResponse)
     def health():
@@ -119,10 +123,16 @@ def create_app() -> FastAPI:
             raise HTTPException(status_code=404, detail="Mask not found")
         return FileResponse(file_path)
 
-    # ---- REAL INFERENCE CONTRACT (new) ----
+    # ---- OFFICIAL REAL INFERENCE CONTRACT ----
     @app.post(
         "/api/analyze",
         response_model=AnalyzeResponse,
+        summary="Analyze image (official)",
+        description=(
+            "Rota oficial de inferência do projeto. "
+            "Recebe uma imagem e retorna o contrato novo com "
+            "task, model_version, top_prediction, top_k e preprocess."
+        ),
         responses={
             400: {
                 "model": ErrorResponse,
@@ -136,9 +146,20 @@ def create_app() -> FastAPI:
             return JSONResponse(status_code=status_code, content=payload)
         return payload
 
-    # ---- LEGACY PREDICTION ----
-    @app.post("/api/predict", response_model=PredictResponse)
-    async def predict(file: UploadFile = File(...)):
+    # ---- LEGACY PREDICTION CONTRACT ----
+    @app.post(
+        "/api/predict",
+        response_model=PredictResponse,
+        deprecated=True,
+        summary="Predict image (legacy)",
+        description=(
+            "Rota legada mantida apenas por compatibilidade. "
+            "Novas integrações devem usar /api/analyze."
+        ),
+    )
+    async def predict(response: Response, file: UploadFile = File(...)):
+        response.headers["X-API-Deprecated"] = "true"
+        response.headers["X-API-Replacement"] = "/api/analyze"
         return await run_real_predict_legacy(settings, file)
 
     @app.get("/api/predictions", response_model=PredictionsListResponse)
