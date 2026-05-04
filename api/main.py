@@ -1,3 +1,4 @@
+from contextlib import asynccontextmanager
 from pathlib import Path
 
 from fastapi import FastAPI, UploadFile, File, Query, HTTPException
@@ -37,27 +38,10 @@ from app.predict import (
 def create_app() -> FastAPI:
     settings = Settings()
 
-    app = FastAPI(
-        title="pimple-api",
-        version="0.3.0",
-        docs_url="/docs",
-        redoc_url="/redoc",
-        openapi_url="/openapi.json",
-    )
+    @asynccontextmanager
+    async def lifespan(app: FastAPI):
+        init_db(settings.sqlite_path)
 
-    allow_origins = [o.strip() for o in settings.cors_origins.split(",") if o.strip()]
-    app.add_middleware(
-        CORSMiddleware,
-        allow_origins=allow_origins if allow_origins else ["*"],
-        allow_credentials=True,
-        allow_methods=["*"],
-        allow_headers=["*"],
-    )
-
-    init_db(settings.sqlite_path)
-
-    @app.on_event("startup")
-    def warm_model():
         try:
             runtime = get_model_runtime(settings)
             print(
@@ -72,6 +56,26 @@ def create_app() -> FastAPI:
             )
         except Exception as e:
             print("[startup] falha ao carregar modelo:", repr(e))
+
+        yield
+
+    app = FastAPI(
+        title="pimple-api",
+        version="0.3.0",
+        docs_url="/docs",
+        redoc_url="/redoc",
+        openapi_url="/openapi.json",
+        lifespan=lifespan,
+    )
+
+    allow_origins = [o.strip() for o in settings.cors_origins.split(",") if o.strip()]
+    app.add_middleware(
+        CORSMiddleware,
+        allow_origins=allow_origins if allow_origins else ["*"],
+        allow_credentials=True,
+        allow_methods=["*"],
+        allow_headers=["*"],
+    )
 
     @app.get("/api/health", response_model=HealthResponse)
     def health():
