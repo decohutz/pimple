@@ -1,12 +1,16 @@
 import { API_BASE, apiGet, apiPostForm } from "./client";
 
+/* =========================
+   Legacy /api/predict
+   ========================= */
+
 export type PredictionItem = {
   id: string;
   filename: string;
   label: string;
   score: number;
   created_at: string;
-  image_url: string; // vem como /api/predictions/{id}/image
+  image_url: string;
 };
 
 export type PredictionsListResponse = {
@@ -14,6 +18,10 @@ export type PredictionsListResponse = {
   total: number;
 };
 
+/**
+ * @deprecated Use analyzeImage() com /api/analyze.
+ * Mantido apenas por compatibilidade com fluxos legados.
+ */
 export async function createPrediction(file: File) {
   const fd = new FormData();
   fd.append("file", file);
@@ -33,7 +41,47 @@ export async function clearPredictions() {
 }
 
 export function predictionImageAbsUrl(p: PredictionItem) {
-  // garante absoluta
   if (p.image_url.startsWith("http")) return p.image_url;
   return `${API_BASE}${p.image_url}`;
+}
+
+/* =========================
+   Official /api/analyze
+   ========================= */
+
+export type AnalyzeTopPrediction = {
+  label: string;
+  score: number;
+};
+
+export type AnalyzeTopKItem = {
+  label: string;
+  score: number;
+};
+
+export type AnalyzePreprocess = {
+  size: [number, number];
+  normalize_mean?: number[];
+  normalize_std?: number[];
+};
+
+export type AnalyzeResponse = {
+  task: string;
+  model_version: string;
+  top_prediction: AnalyzeTopPrediction;
+  top_k: AnalyzeTopKItem[];
+  preprocess: AnalyzePreprocess;
+};
+
+export type AnalyzeErrorResponse = {
+  error: {
+    code: string;
+    message: string;
+  };
+};
+
+export async function analyzeImage(file: File) {
+  const fd = new FormData();
+  fd.append("file", file);
+  return apiPostForm<AnalyzeResponse | AnalyzeErrorResponse>("/api/analyze", fd);
 }
