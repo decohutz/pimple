@@ -1,0 +1,4 @@
+exp_name,preset_name,seed,low_confidence_threshold,ambiguity_gap_threshold,n_samples_test,n_errors_test,n_low_confidence_test,n_ambiguous_test,n_low_confidence_and_error,n_ambiguous_and_error,low_confidence_rate,ambiguous_rate
+cls_resnet50_img224_seed42_20260504_145957,resnet50_a,42,0.5,0.1,1502,206,863,74,101,35,0.5745672436750998,0.0492676431424767
+cls_resnet50_img224_seed43_20260504_160013,resnet50_a,43,0.5,0.1,1502,333,904,166,203,83,0.6018641810918774,0.1105193075898801
+cls_resnet50_img224_seed44_20260504_163054,resnet50_a,44,0.5,0.1,1502,205,902,70,106,34,0.6005326231691078,0.04660452729693742
