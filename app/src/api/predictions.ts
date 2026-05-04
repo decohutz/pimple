@@ -18,6 +18,10 @@ export type PredictionsListResponse = {
   total: number;
 };
 
+/**
+ * @deprecated Use analyzeImage() com /api/analyze.
+ * Mantido apenas por compatibilidade com fluxos legados.
+ */
 export async function createPrediction(file: File) {
   const fd = new FormData();
   fd.append("file", file);
@@ -42,7 +46,7 @@ export function predictionImageAbsUrl(p: PredictionItem) {
 }
 
 /* =========================
-   New /api/analyze
+   Official /api/analyze
    ========================= */
 
 export type AnalyzeTopPrediction = {

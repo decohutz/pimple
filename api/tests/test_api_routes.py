@@ -86,6 +86,8 @@ def test_predict_legacy_success(client):
 
     response = client.post("/api/predict", files=files)
     assert response.status_code == 200
+    assert response.headers["x-api-deprecated"] == "true"
+    assert response.headers["x-api-replacement"] == "/api/analyze"
 
     payload = response.json()
     assert payload["id"] == "pred-123"
@@ -94,3 +96,16 @@ def test_predict_legacy_success(client):
     assert isinstance(payload["score"], float)
     assert "created_at" in payload
     assert payload["image_url"] == "/api/predictions/pred-123/image"
+
+
+def test_openapi_marks_predict_as_deprecated(client):
+    response = client.get("/openapi.json")
+    assert response.status_code == 200
+
+    payload = response.json()
+    predict_op = payload["paths"]["/api/predict"]["post"]
+    analyze_op = payload["paths"]["/api/analyze"]["post"]
+
+    assert predict_op["deprecated"] is True
+    assert predict_op["summary"] == "Predict image (legacy)"
+    assert analyze_op["summary"] == "Analyze image (official)"

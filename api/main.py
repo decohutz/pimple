@@ -1,7 +1,7 @@
 from contextlib import asynccontextmanager
 from pathlib import Path
 
-from fastapi import FastAPI, UploadFile, File, Query, HTTPException
+from fastapi import FastAPI, UploadFile, File, Query, HTTPException, Response
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import FileResponse, JSONResponse
 
@@ -123,10 +123,16 @@ def create_app() -> FastAPI:
             raise HTTPException(status_code=404, detail="Mask not found")
         return FileResponse(file_path)
 
-    # ---- REAL INFERENCE CONTRACT (new) ----
+    # ---- OFFICIAL REAL INFERENCE CONTRACT ----
     @app.post(
         "/api/analyze",
         response_model=AnalyzeResponse,
+        summary="Analyze image (official)",
+        description=(
+            "Rota oficial de inferência do projeto. "
+            "Recebe uma imagem e retorna o contrato novo com "
+            "task, model_version, top_prediction, top_k e preprocess."
+        ),
         responses={
             400: {
                 "model": ErrorResponse,
@@ -140,9 +146,20 @@ def create_app() -> FastAPI:
             return JSONResponse(status_code=status_code, content=payload)
         return payload
 
-    # ---- LEGACY PREDICTION ----
-    @app.post("/api/predict", response_model=PredictResponse)
-    async def predict(file: UploadFile = File(...)):
+    # ---- LEGACY PREDICTION CONTRACT ----
+    @app.post(
+        "/api/predict",
+        response_model=PredictResponse,
+        deprecated=True,
+        summary="Predict image (legacy)",
+        description=(
+            "Rota legada mantida apenas por compatibilidade. "
+            "Novas integrações devem usar /api/analyze."
+        ),
+    )
+    async def predict(response: Response, file: UploadFile = File(...)):
+        response.headers["X-API-Deprecated"] = "true"
+        response.headers["X-API-Replacement"] = "/api/analyze"
         return await run_real_predict_legacy(settings, file)
 
     @app.get("/api/predictions", response_model=PredictionsListResponse)
