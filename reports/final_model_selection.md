@@ -6,15 +6,16 @@
 
 ## Aggregated results
 
-preset_name model_name  n_runs  val_f1_macro_mean  val_f1_macro_std  val_accuracy_mean  test_f1_macro_mean  test_accuracy_mean
- resnet50_a   resnet50       3           0.760862          0.039553           0.848202            0.745409            0.834887
+         preset_name         model_name  n_runs  val_f1_macro_mean  val_f1_macro_std  val_accuracy_mean  test_f1_macro_mean  test_accuracy_mean
+          resnet50_a           resnet50       6           0.760862          0.035378           0.848202            0.745409            0.834887
+mobilenet_v3_large_a mobilenet_v3_large       3           0.746784          0.022829           0.825566            0.691459            0.802708
 
 ## Winner
 - preset_name: `resnet50_a`
 - model_name: `resnet50`
-- n_runs: `3`
+- n_runs: `6`
 - val_f1_macro_mean: `0.760862`
-- val_f1_macro_std: `0.039553`
+- val_f1_macro_std: `0.035378`
 - val_accuracy_mean: `0.848202`
 - test_f1_macro_mean: `0.745409`
 - test_accuracy_mean: `0.834887`
