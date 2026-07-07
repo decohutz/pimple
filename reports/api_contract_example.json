@@ -1,23 +1,23 @@
 {
   "success": {
     "task": "classification",
-    "model_version": "cls_resnet50_img224_seed42_20260415_161053",
+    "model_version": "cls_resnet50_img224_seed44_20260608_123940",
     "top_prediction": {
-      "label": "mel",
-      "score": 0.4385339021682739
+      "label": "nv",
+      "score": 0.3489832580089569
     },
     "top_k": [
       {
-        "label": "mel",
-        "score": 0.4385339021682739
-      },
-      {
         "label": "nv",
-        "score": 0.22441184520721436
+        "score": 0.3489832580089569
       },
       {
-        "label": "df",
-        "score": 0.10974466800689697
+        "label": "mel",
+        "score": 0.26805779337882996
+      },
+      {
+        "label": "akiec",
+        "score": 0.11543401330709457
       }
     ],
     "preprocess": {

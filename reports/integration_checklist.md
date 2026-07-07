@@ -1,24 +1,24 @@
-# Integration Checklist — cls_resnet50_img224_seed42_20260415_161053
+# Integration Checklist — cls_resnet50_img224_seed44_20260608_123940
 
 ## Candidate
-- exp_name: `cls_resnet50_img224_seed42_20260415_161053`
+- exp_name: `cls_resnet50_img224_seed44_20260608_123940`
 - model_name: `resnet50`
-- package_dir: `C:\Users\win\Documents\GitHub\pimple\models\classification\candidates\cls_resnet50_img224_seed42_20260415_161053`
+- package_dir: `C:\Users\win\Documents\GitHub\pimple\models\classification\candidates\cls_resnet50_img224_seed44_20260608_123940`
 
 ## Validation status
 - gate_pass: `True`
-- allow_active_promotion: `False`
-- promoted_to_active: `False`
+- allow_active_promotion: `True`
+- promoted_to_active: `True`
 
 ## Smoke tests
 - success_contract_ok: `True`
 - error_contracts_ok: `True`
 
 ## Metrics
-- val_accuracy: `0.8715046604527297`
-- val_f1_macro: `0.7666367637736983`
-- test_accuracy: `0.8628495339547271`
-- test_f1_macro: `0.7681522012145432`
+- val_accuracy: `0.8781624500665779`
+- val_f1_macro: `0.7972110731969932`
+- test_accuracy: `0.8635153129161118`
+- test_f1_macro: `0.7833161771225755`
 
 ## Package files
 - best.pt
@@ -38,7 +38,7 @@
 - error example: `reports/api_contract_example.json`
 
 ## Recommendation
-- Candidate validado como pacote candidato. Promoção ativa ainda não realizada.
+- Candidate validado e promovido para active_model.json.
 
 ## Important note
 Este pacote continua sendo **educacional** e **não clínico**.
