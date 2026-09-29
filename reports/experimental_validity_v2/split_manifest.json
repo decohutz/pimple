@@ -1,0 +1,77 @@
+{
+  "status": "proposal_not_active",
+  "split_version": "candidate",
+  "seed_outer": 20260928,
+  "seed_calibration": 20260929,
+  "grouping": "connected_components(patient_if_present, official_lesion, file_sha256, decoded_rgb_sha256, precautionary_phash_d4_edges)",
+  "precautionary_phash_radius": 6,
+  "precautionary_rgb_thumbnail_rmse_max": 0.01,
+  "visual_edges_are_identity_claims": false,
+  "base_targets": {
+    "train_pool": 0.7,
+    "validation": 0.15,
+    "internal_holdout": 0.15
+  },
+  "effective_targets": {
+    "train": 0.6,
+    "validation": 0.15,
+    "calibration": 0.1,
+    "internal_holdout": 0.15
+  },
+  "counts": {
+    "train": 6011,
+    "validation": 1502,
+    "internal_holdout": 1502,
+    "calibration": 1000
+  },
+  "base_counts": {
+    "train_pool": 7011,
+    "validation": 1502,
+    "internal_holdout": 1502
+  },
+  "unique_decoded_images_by_split": {
+    "calibration": 1000,
+    "internal_holdout": 1502,
+    "train": 6009,
+    "validation": 1502
+  },
+  "groups_by_split": {
+    "calibration": 747,
+    "internal_holdout": 1121,
+    "train": 4481,
+    "validation": 1121
+  },
+  "groups_total": 7470,
+  "groups_with_multiple_lesion_ids": 0,
+  "mixed_class_groups": 0,
+  "max_group_size": 6,
+  "independence": {
+    "valid": true,
+    "images": 10015,
+    "groups": 7470,
+    "patient_independence_established": false
+  },
+  "final_test_available": false,
+  "test_claim": "Internal regrouped holdout only; all images previously used in model development. An independent prospective/external final test remains required.",
+  "audit_summary_sha256": "60f3ce3634fcc7ef69336d1297c679f9dac44d129cdd7044a1d08be6ab9a24e6",
+  "dataset_manifest_sha256": "e4a2a274374f9909cadc2b59870939929ef00680ac008a99b76285c2692b953f",
+  "artifact_hashes": {
+    "assignments.csv": "77bfdc5a48289bd2bdb589c50ef5a84f1ef99620ca0c519b13aebf1091e77a07",
+    "calibration.csv": "07f18ebc585495f4d4b13616032d5e068da9fad6ee8c50cfa4f826e60668cdb2",
+    "distribution.csv": "4d9dc66eed76a60b4bc5454d637a7f368ddd58ce6dea36eaa3f2be740190b0ef",
+    "internal_holdout.csv": "768b6954b475419ae53abd687f738d4325a300ecb5203a327b3390f2efd16da6",
+    "legacy_transition.csv": "51c138adbfe968564c2a44eef167453548a1a72f2b0c19c6d8df121f98d1abc2",
+    "train.csv": "f809651b82fbd8078ff3a904b18c34c27afefb0cf3ec4fd0cc0c229e4b3cba80",
+    "validation.csv": "65dbf1a41b46c0c3186fb268e436d5884cd3b477fcd0a94e0a019bf8a05571b5"
+  },
+  "generator_sha256": "03d121bc266f0605570e960f53c3304ec7d9a1ea60cbbaf7ba8f91f2489661d4",
+  "git_commit": "44d293a53218887e704838f72daae382a6cae8b1",
+  "git_worktree_dirty": true,
+  "environment": {
+    "python": "3.11.9",
+    "numpy": "2.4.1",
+    "pandas": "3.0.0",
+    "scipy": "1.17.0",
+    "Pillow": "12.1.0"
+  }
+}

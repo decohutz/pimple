@@ -1,0 +1,67 @@
+{
+  "created_at_utc": "2026-09-28T16:46:55.335954+00:00",
+  "images": 10015,
+  "lesions": 7470,
+  "lesions_with_multiple_images": 1956,
+  "max_images_per_lesion": 6,
+  "lesions_crossing_legacy_splits": 1008,
+  "images_in_crossing_lesions": 2407,
+  "lesion_overlap_legacy": {
+    "train__val": 489,
+    "train__test": 506,
+    "val__test": 133
+  },
+  "patient_ids_available": false,
+  "images_by_class": {
+    "nv": 6705,
+    "mel": 1113,
+    "bkl": 1099,
+    "bcc": 514,
+    "akiec": 327,
+    "vasc": 142,
+    "df": 115
+  },
+  "lesions_by_class": {
+    "nv": 5403,
+    "bkl": 727,
+    "mel": 614,
+    "bcc": 327,
+    "akiec": 228,
+    "vasc": 98,
+    "df": 73
+  },
+  "pair_categories": {
+    "visual_candidate_different_lesion_ids": 10413,
+    "different_images_same_official_lesion": 3205,
+    "same_file_bytes": 2
+  },
+  "cross_split_pair_categories": {
+    "visual_candidate_different_lesion_ids": 4312,
+    "different_images_same_official_lesion": 1487,
+    "same_file_bytes": 2
+  },
+  "phash_radius": 6,
+  "phash_bits": 63,
+  "phash_d4_candidates": 10571,
+  "phash_candidates_different_lesion_ids": 10413,
+  "same_capture_priority_pairs": 0,
+  "mask_dimension_mismatches": 0,
+  "nonbinary_masks": 0,
+  "empty_or_full_masks": 2,
+  "images_with_exif": 0,
+  "source_hashes": {
+    "data/raw/lesions/metadata_v2/ISIC2018_Task3_Training_LesionGroupings.csv": "b0352393dc54843e39a7c108781c54cc8a0ef282240330ac239a88c46ea0cc0f",
+    "data/raw/lesions/GroundTruth.csv": "6cc39a6c579a5bd90639705c6a1ad4a326cb3df0626682be1cc693ec30a20ff6",
+    "data/processed/train.csv": "238c24293f1f4a79b70942809a48c898a0d175bf4f6163e2c2dec1e9a6084442",
+    "data/processed/val.csv": "34ed099260ff6f8ffff93498b5c99702ba756f9b9ca1f666be0863f7805b9564",
+    "data/processed/test.csv": "07f423e2a10f160301b0d609a4cc94936b42de554d577c0eeca8c585a6717b0c"
+  },
+  "manifest_sha256": "e4a2a274374f9909cadc2b59870939929ef00680ac008a99b76285c2692b953f",
+  "pairs_sha256": "dbcd97e595ab491a43db68375c506a980e5fedcf86cb138ddff5bde7ce5402cb",
+  "limitations": [
+    "No patient independence claim without patient IDs",
+    "pHash candidates are not proof of identity; arbitrary crops/rotations may be missed",
+    "Masks have no local provenance record; not used to infer identity",
+    "All current images have prior development exposure"
+  ]
+}

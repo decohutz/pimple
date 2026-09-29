@@ -1,0 +1,9 @@
+image_a,image_b,assessment,review_scope
+isic_0024366,isic_0029861,"Exact byte duplicate, confirmed by SHA-256.",qualitative thumbnail comparison; not clinical relabeling
+isic_0024777,isic_0029938,"Exact byte duplicate, confirmed by SHA-256.",qualitative thumbnail comparison; not clinical relabeling
+isic_0024394,isic_0029516,"Same lesion confirmed by official metadata; visually near-identical view, distinct RGB pixels. Separate capture vs re-encoding/processing not established.",qualitative thumbnail comparison; not clinical relabeling
+isic_0027596,isic_0031541,"Same lesion confirmed by official metadata; visually near-identical view, distinct RGB pixels. Separate capture vs re-encoding/processing not established.",qualitative thumbnail comparison; not clinical relabeling
+isic_0026464,isic_0027515,Visual review shows differences in lesion/background/pattern; no confirmed duplicate. Keep distinct official lesion identities.,qualitative thumbnail comparison; not clinical relabeling
+isic_0027757,isic_0032082,Visual review shows differences in lesion/background/pattern; no confirmed duplicate. Keep distinct official lesion identities.,qualitative thumbnail comparison; not clinical relabeling
+isic_0033282,isic_0033818,Visual review shows differences in lesion/background/pattern; no confirmed duplicate. Keep distinct official lesion identities.,qualitative thumbnail comparison; not clinical relabeling
+isic_0024577,isic_0026203,Visual review shows differences in lesion/background/pattern; no confirmed duplicate. Keep distinct official lesion identities.,qualitative thumbnail comparison; not clinical relabeling

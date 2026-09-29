@@ -1,0 +1,21 @@
+{
+  "report_files": {
+    "audit_summary.json": "60f3ce3634fcc7ef69336d1297c679f9dac44d129cdd7044a1d08be6ab9a24e6",
+    "distribution.csv": "4d9dc66eed76a60b4bc5454d637a7f368ddd58ce6dea36eaa3f2be740190b0ef",
+    "legacy_transition.csv": "51c138adbfe968564c2a44eef167453548a1a72f2b0c19c6d8df121f98d1abc2",
+    "qualitative_review.csv": "5fc46750ed8edc8a35adfd6aee098794d73b5e98a73788d3087c99ade4aeac5c",
+    "README.md": "99d6d9714f095a0adac9b3c895be6b57573dd93bd612d3476c2a7df2b601ec2b",
+    "review_examples.csv": "d2028005b2e054b04a38d9a276ca305e16426528f53e0b796c9f25371d33ed14",
+    "source_manifest.json": "38f2a95bc6c845ada1cb64b09aed7ac8737ee968981ac35ca08a68f8d0e11116",
+    "split_assignments.csv": "32b8046085b1ac4422a0cc8e4d2e0925eec497f01554432ed6f1a5ff209db56a",
+    "split_manifest.json": "5688f569f1bed13b701ec00c66f6581e6d55d3d341fc6224915c2353ac0dda96"
+  },
+  "full_audit_manifest": {
+    "path": "data/processed/split_v2/audit_v2/image_manifest.csv",
+    "sha256": "e4a2a274374f9909cadc2b59870939929ef00680ac008a99b76285c2692b953f"
+  },
+  "full_pairs": {
+    "path": "data/processed/split_v2/audit_v2/duplicate_pairs.csv",
+    "sha256": "dbcd97e595ab491a43db68375c506a980e5fedcf86cb138ddff5bde7ce5402cb"
+  }
+}
