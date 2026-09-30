@@ -25,8 +25,13 @@ __pycache__/
 venv/
 env/
 .env/
+.env
 .env.local
 .env.*
+# Templates de configuração podem ser versionados (sem valores sensíveis).
+!.env.example
+!.env.sample
+!.env.template
 
 # Ferramentas / testes
 .pytest_cache/
@@ -39,6 +44,13 @@ htmlcov/
 
 # Logs
 *.log
+
+# Dados locais gerados pela API (não são fixtures de teste).
+/api/db/*.sqlite
+/api/db/*.sqlite-*
+/api/db/*.sqlite3
+/api/db/*.sqlite3-*
+/api/storage/predictions/
 
 ########################################
 # NODE / FRONTEND (pasta app/)
@@ -67,6 +79,15 @@ data/cache/
 # Modelos treinados
 models/
 checkpoints/
+
+########################################
+# EXECUÇÃO LOCAL DOS EXPERIMENTOS
+########################################
+# PID/logs e fotografias transitórias de um processo em execução.
+/reports/experimental_v2/plans/*/execution/
+/reports/experimental_v2/gpu_setup_*/launch_status.json
+# Manter versionáveis planos, attempts, critérios, métricas, provenance,
+# environment e source_snapshot: os pacotes selados verificam esses arquivos.
 
 ########################################
 # NOTEBOOKS / EXPORTS

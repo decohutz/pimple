@@ -1,0 +1,30 @@
+{
+  "registered_at_utc": "2026-09-29T19:35:09.836968+00:00",
+  "hypothesis": "Removing weighted label smoothing may improve validation class discrimination; single-factor ablation.",
+  "reference_selection": "reports/experimental_v2/selections/resnet50_v2_reference_20260929_20260929T153109921383Z",
+  "reference_selection_sha256": "f4044a70f83df1709acbb26c22dbf5ec1ae1541d0e43e223e25ed876ab4ca9eb",
+  "challenger_plan": "reports/experimental_v2/plans/resnet50_v2_no_smoothing_20260929/plan.json",
+  "challenger_plan_id": "6dd3688eece00127c53006d2ffaf3ea39760dc72ec8be140eca851c11c8840fc",
+  "decision_rule": "mean_macro_f1_strictly_higher_and_mean_mel_recall_not_lower",
+  "reference_mean_macro_f1": 0.7105629842785403,
+  "reference_mean_mel_recall": 0.5508982035928144,
+  "preflight": "reports/experimental_v2/preflight/resnet50_cuda_20260929T193409527261Z",
+  "preflight_artifacts_sha256": "a9d708801258351b6e27db1be9c62fdd5b8663b1bf33715f5abffde9ac342050",
+  "budget": {
+    "recipes": 1,
+    "seeds": [
+      42,
+      43,
+      44
+    ],
+    "max_epochs_per_seed": 18,
+    "patience": 3
+  },
+  "limitations": [
+    "Same previously observed validation partition; exploratory comparison.",
+    "No claim of statistical superiority or clinical suitability."
+  ],
+  "holdout_access": false,
+  "automatic_promotion": false,
+  "design_id": "6c412f9b8db1eb32a0f601a1c817d3feba6d7b1946f1a4bdfc94ff287ea0a60d"
+}

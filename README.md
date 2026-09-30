@@ -56,13 +56,20 @@ pimple/
       active_model.json        # Modelo ativo da API
       candidates/             # Pacotes validados de modelos candidatos
 
-  notebooks/                   # Notebooks (EDA / splits / baselines / experiments / handoff)
+  notebooks/                   # Pipeline experimental v2: EDA até avaliação pós-freeze
   reports/                     # Relatórios e plots
   docs/                        # Documentação adicional
   planning/                    # Planejamento semanal
 ```
 
 ## Requisitos
+
+Para experimentos de ML, siga o [guia dos notebooks v2](docs/notebooks_v2.md) e o
+[protocolo experimental](docs/experimental_protocol_v2.md). Essa sequência usa
+`split_v2/candidate`, seleciona modelos exclusivamente por validation e separa a
+avaliação do holdout. O modelo operacional da API permanece no fluxo histórico
+v1; a promoção experimental não o substitui. Os resultados da migração estão no
+[relatório de entrega](reports/notebook_migration_v2/README.md).
 
 - Python 3.10+
 - Node.js 18+

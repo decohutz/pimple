@@ -1,0 +1,7 @@
+{
+  "pytest_passed": 50,
+  "pip_check": "passed",
+  "preflight": "reports/experimental_v2/preflight/resnet50_cuda_20260929T144850695427Z",
+  "peak_gpu_bytes": 6158878720,
+  "plan": "reports/experimental_v2/plans/resnet50_v2_reference_20260929/plan.json"
+}

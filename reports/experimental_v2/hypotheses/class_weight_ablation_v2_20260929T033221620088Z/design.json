@@ -1,0 +1,48 @@
+{
+  "experiment_id": "class_weight_ablation_v2_20260929T033221620088Z",
+  "seed": 42,
+  "features": {
+    "kind": "rgb_histogram_and_moments",
+    "image_size": [
+      128,
+      128
+    ],
+    "histogram_bins": 16,
+    "interpolation": "bilinear",
+    "exif_transpose": true,
+    "histogram_normalization": "sum_one_per_channel"
+  },
+  "primary_metric": "validation_macro_f1",
+  "dataset": {
+    "protocol_version": "experimental_v2",
+    "dataset_version": "ham10000_e4a2a274374f9909",
+    "dataset_manifest_sha256": "e4a2a274374f9909cadc2b59870939929ef00680ac008a99b76285c2692b953f",
+    "metadata_sha256": "b0352393dc54843e39a7c108781c54cc8a0ef282240330ac239a88c46ea0cc0f",
+    "split_version": "split_v2/candidate",
+    "split_manifest_sha256": "5688f569f1bed13b701ec00c66f6581e6d55d3d341fc6224915c2353ac0dda96",
+    "certificate_id": "291504d3ac596e2b74e71e0e55685a113b01b622d33f75ca139a8b2ff3f58814",
+    "class_order": [
+      "mel",
+      "nv",
+      "bcc",
+      "akiec",
+      "bkl",
+      "df",
+      "vasc"
+    ],
+    "split_seed": 20260928,
+    "calibration_seed": 20260929
+  },
+  "hypothesis": "Class weighting changes minority recall/macro-F1 with fixed features, solver and seed.",
+  "comparison": "balanced_vs_unweighted",
+  "logreg": {
+    "solver": "lbfgs",
+    "C": 1.0,
+    "max_iter": 1000,
+    "tol": 0.0001,
+    "class_weight": "balanced",
+    "random_state": 42
+  },
+  "bootstrap_seed": 20260928,
+  "bootstrap_replicates": 2000
+}

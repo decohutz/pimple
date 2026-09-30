@@ -1,0 +1,2 @@
+recipe_id,architecture,runs,unique_seeds,mean,std,min,max,accuracy_mean,training_seconds_mean,parameters,checkpoint_bytes_mean
+recipe_05c21f5ae8798b70,resnet50,3,3,0.7085988730669035,0.018049831369313433,0.6934236045052351,0.7285590507613443,0.8229027962716379,816.038939633329,23522375,94409169.0

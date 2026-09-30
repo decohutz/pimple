@@ -1,0 +1,7 @@
+# Windows/Linux CUDA build selected for the RTX 5080 (sm_120).
+# Install the scientific dependencies from requirements-notebooks.txt separately.
+# Official binary index; retain the API versions validated by this project.
+--index-url https://download.pytorch.org/whl/cu128
+torch==2.10.0+cu128
+torchvision==0.25.0+cu128
+torchaudio==2.10.0+cu128

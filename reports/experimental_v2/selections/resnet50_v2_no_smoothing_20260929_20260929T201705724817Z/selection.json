@@ -1,0 +1,40 @@
+{
+  "plan_id": "6dd3688eece00127c53006d2ffaf3ea39760dc72ec8be140eca851c11c8840fc",
+  "experiment_id": "resnet50_v2_no_smoothing_20260929",
+  "dataset": {
+    "protocol_version": "experimental_v2",
+    "dataset_version": "ham10000_e4a2a274374f9909",
+    "dataset_manifest_sha256": "e4a2a274374f9909cadc2b59870939929ef00680ac008a99b76285c2692b953f",
+    "metadata_sha256": "b0352393dc54843e39a7c108781c54cc8a0ef282240330ac239a88c46ea0cc0f",
+    "split_version": "split_v2/candidate",
+    "split_manifest_sha256": "5688f569f1bed13b701ec00c66f6581e6d55d3d341fc6224915c2353ac0dda96",
+    "certificate_id": "291504d3ac596e2b74e71e0e55685a113b01b622d33f75ca139a8b2ff3f58814",
+    "class_order": [
+      "mel",
+      "nv",
+      "bcc",
+      "akiec",
+      "bkl",
+      "df",
+      "vasc"
+    ],
+    "split_seed": 20260928,
+    "calibration_seed": 20260929
+  },
+  "split_role": "validation",
+  "selection_policy": "mean_validation_macro_f1_then_mean_accuracy_then_recipe_id; candidate_f1_then_accuracy_then_smallest_seed",
+  "unique_recipes": 1,
+  "total_runs": 3,
+  "unique_training_seeds": 3,
+  "recipe_id": "recipe_05c21f5ae8798b70",
+  "candidate_run_id": "resnet50_seed44_20260929T200538847380Z",
+  "candidate_directory": "models/experimental_v2/runs/resnet50_seed44_20260929T200538847380Z",
+  "candidate_artifacts_sha256": "09f65c8ce34e90a28769a404fb92be0f07d010a496ecbcde06618a826e6ff843",
+  "validation_macro_f1_mean": 0.7085988730669035,
+  "validation_macro_f1_std": 0.018049831369313433,
+  "run_artifact_hashes": {
+    "resnet50_seed42_20260929T193542664239Z": "f03b6b102e78b328497b14484f25cee0c0abb2c1ba65694df9f84f511e3be0d5",
+    "resnet50_seed43_20260929T195138165823Z": "a1be01a8b376ccebed2bac4239a811695f3a50f3c42b34f92e775eef8ffc1378",
+    "resnet50_seed44_20260929T200538847380Z": "09f65c8ce34e90a28769a404fb92be0f07d010a496ecbcde06618a826e6ff843"
+  }
+}

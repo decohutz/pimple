@@ -1,0 +1,35 @@
+{
+  "registered_at_utc": "2026-09-29T14:45:12.830349+00:00",
+  "dataset": {
+    "protocol_version": "experimental_v2",
+    "dataset_version": "ham10000_e4a2a274374f9909",
+    "dataset_manifest_sha256": "e4a2a274374f9909cadc2b59870939929ef00680ac008a99b76285c2692b953f",
+    "metadata_sha256": "b0352393dc54843e39a7c108781c54cc8a0ef282240330ac239a88c46ea0cc0f",
+    "split_version": "split_v2/candidate",
+    "split_manifest_sha256": "5688f569f1bed13b701ec00c66f6581e6d55d3d341fc6224915c2353ac0dda96",
+    "certificate_id": "291504d3ac596e2b74e71e0e55685a113b01b622d33f75ca139a8b2ff3f58814",
+    "class_order": [
+      "mel",
+      "nv",
+      "bcc",
+      "akiec",
+      "bkl",
+      "df",
+      "vasc"
+    ],
+    "split_seed": 20260928,
+    "calibration_seed": 20260929
+  },
+  "criteria": {
+    "minimum_validation_macro_f1_mean": 0.3256329916084612,
+    "minimum_validation_recall": {},
+    "require_calibration": false
+  },
+  "rationale": "At least match the strongest prespecified v2 baseline on validation; no clinical recall floors.",
+  "baseline_sha256": "0bd8e52022bcca8d3d7daab0bb9b555ecf995f48af2d625508cdacbe2bc66747",
+  "baseline_validation_macro_f1": {
+    "majority": 0.11460469355206197,
+    "logreg_balanced": 0.3256329916084612
+  },
+  "criteria_id": "377de735c83b0e6a0ad3f850a2de5d145a698797ad676f21bd60b830004cb907"
+}

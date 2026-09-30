@@ -1,0 +1,9 @@
+{
+  "files": {
+    "comparison.json": "24c433d9d3e3b5605aa9238f6d21228a43c59b2d6ff5aca6aaa1be4e752bc332",
+    "design.json": "58a8454bbb44834df3d91da9f7fe50beea23a38a8e6b47efbb461cb8dd26bb02",
+    "paired_seeds.csv": "1cdc16daefb0c0037faa446444ea817803607cf6d8ee4f9e41be797c1241d6ba",
+    "per_class.csv": "f52cbf663af2fc5ba07d934738798a40e268c48b448683feb6e82e89a8cf6e3c"
+  },
+  "content_sha256": "9031f42fac685da788a0ffe04c21513ef1c9dd3dedc1eb79db4f52e4fa0c63a4"
+}

@@ -1,0 +1,46 @@
+{
+  "created_at_utc": "2026-09-29T03:32:32.940935+00:00",
+  "git_commit": "7567d560e6ac21a77d9fb4437344cfe2a5ab0335",
+  "working_tree_dirty": true,
+  "dataset": {
+    "protocol_version": "experimental_v2",
+    "dataset_version": "ham10000_e4a2a274374f9909",
+    "dataset_manifest_sha256": "e4a2a274374f9909cadc2b59870939929ef00680ac008a99b76285c2692b953f",
+    "metadata_sha256": "b0352393dc54843e39a7c108781c54cc8a0ef282240330ac239a88c46ea0cc0f",
+    "split_version": "split_v2/candidate",
+    "split_manifest_sha256": "5688f569f1bed13b701ec00c66f6581e6d55d3d341fc6224915c2353ac0dda96",
+    "certificate_id": "291504d3ac596e2b74e71e0e55685a113b01b622d33f75ca139a8b2ff3f58814",
+    "class_order": [
+      "mel",
+      "nv",
+      "bcc",
+      "akiec",
+      "bkl",
+      "df",
+      "vasc"
+    ],
+    "split_seed": 20260928,
+    "calibration_seed": 20260929
+  },
+  "source_hashes": {
+    "scripts/check_notebooks_v2.py": "c35406d7e54ef602134a83cb44188595d11ddc130b0d6bb58085bd49772b29b5",
+    "scripts/evaluate_frozen.py": "70cbbfcdf6bd91fda6c9890f790556c9d063c1c2d6f33c4a36f06f7bb13ac55c",
+    "scripts/experimental_protocol.py": "4a109fd1cd2db94daf961956c6a1cf5563ee824aae0bba2e46e0e3adf57d7574",
+    "scripts/experimental_validity.py": "9e1447ea67cb30694b483eb12b4b46e452f9c07ece855d576a7a8a6c1b3671aa",
+    "scripts/v2_artifacts.py": "86a7364e65e0f4caa60cb01bca81033b845eaea9a2a583f3685d0f5b91e1bf8b",
+    "scripts/v2_baselines.py": "ca05620a700576988dc19321aa9869d6c01afba8d8607c0bc3e42694583c9152",
+    "scripts/v2_data.py": "eea90dd9d970e2ac419acc96604f339d3550bb1bb2aff408addef013cd2191b9",
+    "scripts/v2_metrics.py": "be0b059223e6762f1f773d883230a282791ade27debb690b192b3345994b886d",
+    "scripts/v2_release.py": "30b2c3c49cb8d9c2ddb8862815d8174d7fd08c95b910606e754ab4db8516095c",
+    "scripts/v2_training.py": "c230fa792d2fd7800be3d512707ecb18c4c0dd1144d5c11999e53d10a5cc97d8",
+    "notebooks/01_eda_lesions.ipynb": "dea17d30f3815cd4298430317ef18e8688ace5b5856cd024d39cf33312883203",
+    "notebooks/02_prepare_splits.ipynb": "5aba6ffc0d5989f0d6754504e712c605a52ab5810fe7c338a6e3dc09f15cc45f",
+    "notebooks/03_baselines.ipynb": "8a624e5e0d0207a46e7ee38888a0193aee77336005053812fb19b6868b9c293f",
+    "notebooks/04_experiments_and_selection.ipynb": "eb8c131b1406e9bb0e635b66e4546065e861b8d5b7280c68f64a54c45da0c73a",
+    "notebooks/05_train_real.ipynb": "3be85f2a82d2025ac476dba0c3a3cfb8114ff777ef383f1063ff4aac18ece98c",
+    "notebooks/06_inference_contract_and_app_integration.ipynb": "6756d4c26f5f1c85a58bf565a6ef954ab231231ebeb362b09b8f0c1e9e9012cb",
+    "notebooks/07_evaluate_frozen_candidate.ipynb": "2bf91d2122003dc86ace53b7a907ed62bc8198e2fb1b33d1cebd77c65e0bfc50",
+    "docs/experimental_protocol_v2.md": "641e50580acda342e171d9ada9bba187208443d6ff2e179b584ce42ee2f71064"
+  },
+  "source_snapshot_sha256": "3e79880de44738ecf9d8fad962f5c2d99629b71356c22ed2db957595e135ef0a"
+}

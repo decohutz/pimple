@@ -1,0 +1,12 @@
+# Python 3.11.9. Scientific/notebook packages tested in this migration.
+-r requirements-validity.txt
+scikit-learn==1.8.0
+matplotlib==3.10.8
+nbformat==5.10.4
+nbclient==0.10.4
+ipykernel==7.1.0
+# Install torch/torchvision separately for the intended CPU/CUDA platform.
+# Tested API pair: torch 2.10.0 / torchvision 0.25.0.
+# Local +cu126 build PASSES CPU tests but FAILS RTX 5080 CUDA smoke.
+# Follow-up GPU setup: requirements-cuda128.txt, validated on RTX 5080.
+# Exact installed versions/builds are saved per run in environment.json.

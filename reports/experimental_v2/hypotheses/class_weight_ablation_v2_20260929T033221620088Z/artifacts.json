@@ -1,0 +1,33 @@
+{
+  "files": {
+    "design.json": "0e57129993e2961c896336dbb1cae5ca61b72fe53dbb199f67ab2fab36bec4e8",
+    "environment.json": "08d620fbacf8c4b761a0421dbb44b3ea254d7b1bdc58601de33d2a5069dc57ea",
+    "experiment_results.json": "68b207f8f73ba45099a39c4a467932a6b71e14e2d108874619f49b8bf0a1651e",
+    "logreg_balanced_confusion.png": "c725a6a2f3ac2805b94214ce966a18cbddd7259935ab0b2d71e56bce3a99232f",
+    "logreg_balanced_parameters.npz": "9a587823a779ba4ae71bbcf2ebfc628931c7e4952079f9df97d432ee619256ad",
+    "logreg_balanced_validation_predictions.csv": "f8b9eb5b1714595ae8024c52b8fdf921de320b14dc89caab0b7d8d7c910607a3",
+    "logreg_unweighted_confusion.png": "b946ec14ca3bdf237134176097ba8394cfce3f477d5ad571c4498f49ead7c422",
+    "logreg_unweighted_parameters.npz": "d6b8583bc9670e98727469775b8cef39751aba276a6ccf864aaaf5a574c4dd3b",
+    "logreg_unweighted_validation_predictions.csv": "cebd4fd46e67a6b7cc90e76d1b89c39368fe0ca432707a00bc87aebbac85c7ba",
+    "provenance.json": "58cac31f991986a162e41dc1b05987c36ee05c889ab7af8a1dab1cb35b075259",
+    "source_snapshot/docs/experimental_protocol_v2.md": "641e50580acda342e171d9ada9bba187208443d6ff2e179b584ce42ee2f71064",
+    "source_snapshot/notebooks/01_eda_lesions.ipynb": "dea17d30f3815cd4298430317ef18e8688ace5b5856cd024d39cf33312883203",
+    "source_snapshot/notebooks/02_prepare_splits.ipynb": "5aba6ffc0d5989f0d6754504e712c605a52ab5810fe7c338a6e3dc09f15cc45f",
+    "source_snapshot/notebooks/03_baselines.ipynb": "8a624e5e0d0207a46e7ee38888a0193aee77336005053812fb19b6868b9c293f",
+    "source_snapshot/notebooks/04_experiments_and_selection.ipynb": "eb8c131b1406e9bb0e635b66e4546065e861b8d5b7280c68f64a54c45da0c73a",
+    "source_snapshot/notebooks/05_train_real.ipynb": "3be85f2a82d2025ac476dba0c3a3cfb8114ff777ef383f1063ff4aac18ece98c",
+    "source_snapshot/notebooks/06_inference_contract_and_app_integration.ipynb": "6756d4c26f5f1c85a58bf565a6ef954ab231231ebeb362b09b8f0c1e9e9012cb",
+    "source_snapshot/notebooks/07_evaluate_frozen_candidate.ipynb": "2bf91d2122003dc86ace53b7a907ed62bc8198e2fb1b33d1cebd77c65e0bfc50",
+    "source_snapshot/scripts/check_notebooks_v2.py": "c35406d7e54ef602134a83cb44188595d11ddc130b0d6bb58085bd49772b29b5",
+    "source_snapshot/scripts/evaluate_frozen.py": "70cbbfcdf6bd91fda6c9890f790556c9d063c1c2d6f33c4a36f06f7bb13ac55c",
+    "source_snapshot/scripts/experimental_protocol.py": "4a109fd1cd2db94daf961956c6a1cf5563ee824aae0bba2e46e0e3adf57d7574",
+    "source_snapshot/scripts/experimental_validity.py": "9e1447ea67cb30694b483eb12b4b46e452f9c07ece855d576a7a8a6c1b3671aa",
+    "source_snapshot/scripts/v2_artifacts.py": "86a7364e65e0f4caa60cb01bca81033b845eaea9a2a583f3685d0f5b91e1bf8b",
+    "source_snapshot/scripts/v2_baselines.py": "ca05620a700576988dc19321aa9869d6c01afba8d8607c0bc3e42694583c9152",
+    "source_snapshot/scripts/v2_data.py": "eea90dd9d970e2ac419acc96604f339d3550bb1bb2aff408addef013cd2191b9",
+    "source_snapshot/scripts/v2_metrics.py": "be0b059223e6762f1f773d883230a282791ade27debb690b192b3345994b886d",
+    "source_snapshot/scripts/v2_release.py": "30b2c3c49cb8d9c2ddb8862815d8174d7fd08c95b910606e754ab4db8516095c",
+    "source_snapshot/scripts/v2_training.py": "c230fa792d2fd7800be3d512707ecb18c4c0dd1144d5c11999e53d10a5cc97d8"
+  },
+  "content_sha256": "4298f5e65fea0e3b27d655d724cd550e0c544d41f4a9a70ee3daaa568f80f6d1"
+}

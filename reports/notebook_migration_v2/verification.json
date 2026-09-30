@@ -1,0 +1,148 @@
+{
+  "recorded_at_utc": "2026-09-29T14:29:38.142648+00:00",
+  "git_commit": "7567d560e6ac21a77d9fb4437344cfe2a5ab0335",
+  "working_tree_dirty": true,
+  "pytest": {
+    "command": "python -B -m pytest tests -q -p no:cacheprovider",
+    "passed": 47,
+    "warnings": 3,
+    "seconds": 10.41,
+    "warning_reason": "Installed PyTorch CUDA build lacks RTX 5080 sm_120 support",
+    "api_suite_executed": false
+  },
+  "notebook_checks": [
+    {
+      "directory": "data/processed/notebook_executions_v2/verification_20260929T033125528254Z",
+      "verification_sha256": "e3857b82f0cf0c51c4ecea59cea5b8ad5259901480ce68c870d0d23069d278d9",
+      "results": [
+        {
+          "notebook": "01_eda_lesions.ipynb",
+          "status": "passed",
+          "seconds": 2.1615552000002936,
+          "development_filesystem_guard": false,
+          "source_modified": false
+        },
+        {
+          "notebook": "02_prepare_splits.ipynb",
+          "status": "passed",
+          "seconds": 26.0053603000124,
+          "development_filesystem_guard": false,
+          "source_modified": false
+        },
+        {
+          "notebook": "03_baselines.ipynb",
+          "status": "passed",
+          "seconds": 25.474906900024507,
+          "development_filesystem_guard": true,
+          "source_modified": false
+        },
+        {
+          "notebook": "04_experiments_and_selection.ipynb",
+          "status": "passed",
+          "seconds": 14.62278699997114,
+          "development_filesystem_guard": true,
+          "source_modified": false
+        },
+        {
+          "notebook": "05_train_real.ipynb",
+          "status": "passed",
+          "seconds": 9.961381200002506,
+          "development_filesystem_guard": true,
+          "source_modified": false
+        },
+        {
+          "notebook": "06_inference_contract_and_app_integration.ipynb",
+          "status": "passed",
+          "seconds": 3.7382842999650165,
+          "development_filesystem_guard": true,
+          "source_modified": false
+        },
+        {
+          "notebook": "07_evaluate_frozen_candidate.ipynb",
+          "status": "passed",
+          "seconds": 1.486291200038977,
+          "development_filesystem_guard": false,
+          "source_modified": false
+        }
+      ],
+      "real_cnn_training": false,
+      "real_holdout_evaluation": false
+    },
+    {
+      "directory": "data/processed/notebook_executions_v2/verification_20260929T142204492867Z",
+      "verification_sha256": "f6d9c44d4720a807051c9083a4bf6a5eacebf379285c4c077e4428f4f17bf27c",
+      "results": [
+        {
+          "notebook": "03_baselines.ipynb",
+          "status": "passed",
+          "seconds": 16.885055100021418,
+          "development_filesystem_guard": true,
+          "source_modified": false
+        },
+        {
+          "notebook": "05_train_real.ipynb",
+          "status": "passed",
+          "seconds": 13.121808899973985,
+          "development_filesystem_guard": true,
+          "source_modified": false
+        },
+        {
+          "notebook": "06_inference_contract_and_app_integration.ipynb",
+          "status": "passed",
+          "seconds": 3.7243846000055782,
+          "development_filesystem_guard": true,
+          "source_modified": false
+        }
+      ],
+      "real_cnn_training": false,
+      "real_holdout_evaluation": false
+    }
+  ],
+  "preservation": {
+    "inventory": "reports/notebook_migration_v2/legacy_inventory.json",
+    "inventory_sha256": "8aef7a598c3d59278e48ef95de76e6f6d09d534cb5afcc89c5bbd98fcc0750a7",
+    "historical_files_unchanged": 165,
+    "original_notebooks_archived_and_verified": 6,
+    "archive_sha256": "cddd2e9260a77a06263222f457f3b99a724204e96da4c1b37e2217d12e949c85"
+  },
+  "git_diff_check": "passed",
+  "real_cnn_training": false,
+  "real_holdout_evaluation": false,
+  "real_candidate_frozen": false,
+  "real_gate_criteria_registered": false,
+  "operational_model_modified": false,
+  "cuda_smoke": {
+    "status": "failed",
+    "message": "no kernel image is available for execution on the device",
+    "gpu": "NVIDIA GeForce RTX 5080",
+    "capability": "sm_120",
+    "torch": "2.10.0+cu126",
+    "environment_changed": false
+  },
+  "source_sha256": {
+    "docs/experimental_protocol_v2.md": "e7c90c4708d8aabf1ade6daf175f4fce410fba5c80cde254dfe5092480247b1a",
+    "docs/notebooks_v2.md": "eee3c4afc078f58393e664c32e68226520c44446bbda7b7a0d69b93d5d1c0641",
+    "notebooks/01_eda_lesions.ipynb": "dea17d30f3815cd4298430317ef18e8688ace5b5856cd024d39cf33312883203",
+    "notebooks/02_prepare_splits.ipynb": "5aba6ffc0d5989f0d6754504e712c605a52ab5810fe7c338a6e3dc09f15cc45f",
+    "notebooks/03_baselines.ipynb": "b6c287372010fb7c3808def494bbd1f633683e00576287ec4e53539695e4e4f5",
+    "notebooks/04_experiments_and_selection.ipynb": "eb8c131b1406e9bb0e635b66e4546065e861b8d5b7280c68f64a54c45da0c73a",
+    "notebooks/05_train_real.ipynb": "5639d510bf9b8c3506f69c18f95dc59547529893c46f194d2241099fd208bd38",
+    "notebooks/06_inference_contract_and_app_integration.ipynb": "6756d4c26f5f1c85a58bf565a6ef954ab231231ebeb362b09b8f0c1e9e9012cb",
+    "notebooks/07_evaluate_frozen_candidate.ipynb": "2bf91d2122003dc86ace53b7a907ed62bc8198e2fb1b33d1cebd77c65e0bfc50",
+    "README.md": "5907491e2e6462a453de4b26708fc429d4c52997a82a8042476cc5e86cb4c74f",
+    "reports/notebook_migration_v2/README.md": "265c6fe16549d9e897addb5f50b58bd56e9c13ea8f5836d2511a31a398e03db3",
+    "scripts/check_notebooks_v2.py": "0933815783a91e9a22c9bff1a8f634389f9b7712edcc86f4e3065ee085917778",
+    "scripts/evaluate_frozen.py": "70cbbfcdf6bd91fda6c9890f790556c9d063c1c2d6f33c4a36f06f7bb13ac55c",
+    "scripts/experimental_protocol.py": "4a109fd1cd2db94daf961956c6a1cf5563ee824aae0bba2e46e0e3adf57d7574",
+    "scripts/experimental_validity.py": "9e1447ea67cb30694b483eb12b4b46e452f9c07ece855d576a7a8a6c1b3671aa",
+    "scripts/requirements-notebooks.txt": "23e43446fdb3915cde405ba3c8cc62297073a86fa087778345fe03a43e334e78",
+    "scripts/v2_artifacts.py": "64c009a0a6910f5130df992232272dcbeba8dd11bfd46a8b5b151088aa3b3b2e",
+    "scripts/v2_baselines.py": "ca05620a700576988dc19321aa9869d6c01afba8d8607c0bc3e42694583c9152",
+    "scripts/v2_data.py": "eea90dd9d970e2ac419acc96604f339d3550bb1bb2aff408addef013cd2191b9",
+    "scripts/v2_metrics.py": "d94723a77737a2a54ea10ecb901cb17ebb1ac5ad0e597924371eb90840065b47",
+    "scripts/v2_release.py": "9d814bce80f80b16579de4ba45a70c97f7902c1abfce24b9b8376307fdec50ef",
+    "scripts/v2_training.py": "97cfa725f392636007ce109b39a782d3b46ef048c70a1e909cd5842cfde82794",
+    "tests/test_experimental_validity.py": "510885ac6f1e75744a1e634dc9c0fb4bd41431c5bd10b136494c84d61fdb56b1",
+    "tests/test_notebook_protocol_v2.py": "d0020993b252c8862b67a0da89fd20ad243d6afd21fb3e6cafed3d21670a1b66"
+  }
+}

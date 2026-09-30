@@ -1,0 +1,19 @@
+{
+  "passed": true,
+  "support": {
+    "available": true,
+    "supported": true,
+    "device_architecture": "sm_120",
+    "compiled_architectures": [
+      "sm_70",
+      "sm_75",
+      "sm_80",
+      "sm_86",
+      "sm_90",
+      "sm_100",
+      "sm_120"
+    ],
+    "reason": "Device architecture explicitly present in this PyTorch build"
+  },
+  "operation": "CUDA forward/backward and synchronization"
+}

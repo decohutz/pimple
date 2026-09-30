@@ -1,8 +1,12 @@
 # Pimple — protocolo experimental v2
 
-Status: **proposta executável, ainda não ativada nos notebooks nem no modelo servido**.
+Status: **notebooks 01–07 migrados; primeira rodada CNN v2 iniciada em 2026-09-29; ativação operacional não executada**.
 Escopo: validade dos dados, agrupamento, seleção, calibração, avaliação e proveniência.
-Nenhum treino de CNN, threshold de confiança ou rescue foi implementado nesta fase.
+Nenhum treino de CNN foi executado; nenhum threshold de confiança ou rescue foi implementado.
+
+A migração seguinte implementou o treino reutilizável, sem executar CNNs reais.
+O guia atual de execução e as fronteiras de acesso estão em
+[notebooks_v2.md](notebooks_v2.md). As constatações de dados abaixo continuam válidas.
 
 ## 1. Decisão fundamental
 
@@ -92,8 +96,11 @@ Todos os JPEGs foram decodificados; nenhum fornece EXIF para recuperar patient_i
 
 ## 4. split_v2 candidato
 
-Artefato canônico desta proposta: `data/processed/split_v2/candidate/`.
+Artefato canônico consumido pelos notebooks: `data/processed/split_v2/candidate/`.
 Não substitui `data/processed/{train,val,test}.csv`.
+O manifesto original `proposal_not_active` foi preservado como histórico da fase 2.
+O NB02 emite `reports/experimental_v2/dataset_contract.json`, vinculando esse
+manifesto por hash à versão efetivamente utilizada: `split_v2/candidate`.
 
 - Seed externa: **20260928**.
 - Seed da reserva de calibração: **20260929**.
@@ -205,9 +212,12 @@ deliberadamente rebatizado de validação. Proveniência, revisão e separação
 de avaliação continuam necessárias. `development_inputs()` entrega somente os
 arquivos permitidos para treino, seleção ou calibração e valida seus hashes.
 
-**Os notebooks antigos ainda não utilizam esse contrato.** NB05 ainda lê o teste
-legado e NB06 ainda contém o gate antigo. Devem ficar restritos à reprodução histórica
-até a migração descrita abaixo. Os novos testes não tornam o gate legado seguro.
+**Os notebooks atuais utilizam esse contrato.** NB03–05 carregam somente train e
+validation através de `v2_data.load_development()`. NB06 chama o gate v2 em
+`v2_release.promote_frozen()`. Os notebooks antigos com teste por run e gate baseado
+em teste foram arquivados como `legacy_v1`, incluindo outputs e hashes.
+O catálogo é `reports/notebook_migration_v2/legacy_inventory.json`.
+Nenhum fluxo novo lê seus scores como critérios.
 
 No freeze, registrar um `freeze_id` com hashes do checkpoint, preprocess, classes,
 split, critérios e política, inclusive quando `policy=none`. O relatório final
@@ -319,12 +329,14 @@ diferente de linhas; união transitiva; pHash versus busca bruta; similaridade s
 identidade; sobrescrita proibida; arquivos adulterados; allowlist de desenvolvimento;
 teste final rejeitado pelo gate; holdout reutilizado proibido de se chamar final_test.
 
-Após migrar os notebooks, acrescentar teste de integração de leitura de dados:
-falhar se treino/seleção/gate acessarem qualquer caminho do holdout/final_test.
+Os testes de integração instrumentam a abertura de arquivos e falham se
+treino/seleção/gate acessarem caminhos reservados. `check_notebooks_v2.py` também
+executa NB03–06 em kernels novos com um audit hook que bloqueia CSVs globais,
+partições reservadas e suas imagens, inclusive acessos indiretos.
 Separar credenciais/permissões do job final quando houver infraestrutura para isso.
 Um teste que apenas busca a string `test` no código não é proteção suficiente.
 
-## 10. Migração preservando o histórico
+## 10. Migração preservando o histórico — implementada
 
 1. Preservar os hashes e nomes dos splits atuais e catalogá-los como `legacy_v1`.
    Não substituir automaticamente os CSVs que os notebooks antigos leem.
@@ -345,9 +357,9 @@ Um teste que apenas busca a string `test` no código não é proteção suficien
 8. Nunca misturar scores v1/v2 na mesma tabela sem dataset/split version. Comparar
    receitas antigas só retreinando-as sobre os novos grupos com orçamento fixo.
 
-### Arquivos existentes que ainda precisam mudar, e por quê
+### Responsabilidades migradas
 
-| Arquivo | Alteração necessária antes de novos experimentos |
+| Arquivo | Alteração realizada |
 |---|---|
 | `notebooks/02_prepare_splits.ipynb` | Consumir agrupamento/versionamento v2; parar dedupe/split por stem como único controle |
 | `notebooks/03_baselines.ipynb` e `notebooks/04_experiments_and_selection.ipynb` | Usar train/validation explícitos; não ler holdout durante seleção |
@@ -356,14 +368,21 @@ Um teste que apenas busca a string `test` no código não é proteção suficien
 | reports futuros | Nomes por protocolo/dataset/split/run; preservar relatórios legados |
 | requirements/lock específico de ML | Fixar ambiente antes dos novos treinos |
 
-Essas alterações foram **planejadas, não aplicadas nesta fase**. Frontend, API,
-checkpoints e `active_model.json` permaneceram intactos.
+Essas alterações foram aplicadas na fase de migração de notebooks. Os módulos
+`v2_data`, `v2_metrics`, `v2_baselines`, `v2_training` e `v2_release` concentram a
+implementação compartilhada. `evaluate_frozen.py` é o único entrypoint de avaliação
+do holdout; exige freeze e decisão elegível anteriores.
+Frontend, API, checkpoints antigos e `active_model.json` permaneceram intactos.
 
 ## 11. Próxima etapa
 
-Fechar a revisão do manifesto e do protocolo; migrar os consumidores com testes de
-isolamento; executar apenas baselines leves para registrar critérios de validation.
-Definir também a fonte/viabilidade do final_test independente. Só então iniciar um
-experimento CNN pré-registrado, começando da receita atual e sem tentar otimizar F1.
+Após autorização em 2026-09-29, o critério de elegibilidade experimental foi
+registrado a partir do baseline v2 (média de validation macro-F1 >= 0.3256329916084612).
+O ambiente foi corrigido para cu128 e passou no smoke da RTX 5080. A receita
+ResNet50 foi pré-registrada para seeds 42/43/44, sem busca de hiperparâmetros;
+ver [primeiro experimento CNN v2](cnn_v2_first_run.md). Acompanhar os runs e revisar
+validation após completar o plano, antes de freeze/promoção. Critérios clínicos
+ou operacionais de implantação não são estabelecidos por esse piso de baseline.
+Definir também a fonte/viabilidade do final_test independente.
 Qualquer número obtido antes de um teste independente continuará sendo evidência
 interna de desenvolvimento, ainda que o novo split seja correto por lesão.

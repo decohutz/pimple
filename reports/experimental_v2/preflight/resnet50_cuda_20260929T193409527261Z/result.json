@@ -1,0 +1,36 @@
+{
+  "passed": true,
+  "kind": "hardware_data_preflight_not_a_candidate",
+  "selection_eligible": false,
+  "dataset": {
+    "protocol_version": "experimental_v2",
+    "dataset_version": "ham10000_e4a2a274374f9909",
+    "dataset_manifest_sha256": "e4a2a274374f9909cadc2b59870939929ef00680ac008a99b76285c2692b953f",
+    "metadata_sha256": "b0352393dc54843e39a7c108781c54cc8a0ef282240330ac239a88c46ea0cc0f",
+    "split_version": "split_v2/candidate",
+    "split_manifest_sha256": "5688f569f1bed13b701ec00c66f6581e6d55d3d341fc6224915c2353ac0dda96",
+    "certificate_id": "291504d3ac596e2b74e71e0e55685a113b01b622d33f75ca139a8b2ff3f58814",
+    "class_order": [
+      "mel",
+      "nv",
+      "bcc",
+      "akiec",
+      "bkl",
+      "df",
+      "vasc"
+    ],
+    "split_seed": 20260928,
+    "calibration_seed": 20260929
+  },
+  "training_batches": 2,
+  "validation_batches": 1,
+  "probe_epochs": 1,
+  "batch_size": 128,
+  "seconds": 0.8657296999590471,
+  "peak_gpu_bytes": 6158878720,
+  "initialization": {
+    "weights": "ResNet50_Weights.IMAGENET1K_V2",
+    "sha256": "11ad3fa62ca79e40addfd354a8ec4b7c75143b3038b8d2a807fbc68deab379ca"
+  },
+  "note": "Discarded model; no checkpoint or quality score used for selection."
+}
