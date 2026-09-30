@@ -1,0 +1,19 @@
+{
+  "split_role": "validation",
+  "class_order": [
+    "mel",
+    "nv",
+    "bcc",
+    "akiec",
+    "bkl",
+    "df",
+    "vasc"
+  ],
+  "checkpoint_sha256": "844ddb823bd544e1d4def047a97c8f6acef54b7a63c80bdac1b76be869527843",
+  "rows": 1502,
+  "row_identity_sha256": "3b17dc2fb398cae79daad1bbfd1802e2f89a773b28f49c98f25302539b6369a5",
+  "files": {
+    "validation_predictions.csv": "c9ffae1ee35f12a72c7cb00df3f808cfe4ece4fa1a95c146d443089f584d0a9e",
+    "validation_logits.npy": "3fd56858e67ce2ba28cffc0b6e05c2b2a221ea809796a2f4797da31f0db52329"
+  }
+}

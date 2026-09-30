@@ -1,0 +1,23 @@
+{
+  "recorded_at_utc": "2026-09-30T13:38:05.648331+00:00",
+  "git_commit": "666ccb0857183af17ac0c4fa2e1158130fe82bbd",
+  "tests_passed": 118,
+  "test_seconds": 13.66,
+  "command": "python -B -m pytest tests -q -p no:cacheprovider",
+  "study_seal_verified": true,
+  "all_six_original_runs_seals_verified": true,
+  "all_image_lesion_group_label_alignments_verified": true,
+  "original_runs_unmodified": true,
+  "inference_verification": "inference_verification_final.json",
+  "source_sha256": {
+    "scripts/v2_tta.py": "608970f82b58b21d821f9ff850fa3d987b2b217b2dfb7e4b907cd06c60cedba2",
+    "scripts/v2_ensembles.py": "0b1a2ba03f98ec5734c811f71cc77b775dd93ba76b0b5da98972107bb4c0425f",
+    "scripts/ensemble_inference.py": "970e9d7ce7e3bc1e4ee0d260bb5bd3f53d314d605fcce8371bb8422ad8481674",
+    "tests/test_v2_tta.py": "4221a60f7a9e9e85181390d7f98aab32a56ad6dc0eef0e8eebc23200995e3eb1",
+    "tests/test_v2_ensembles.py": "713a4ef9a465f734fc4501a1e2505cf5c1393fa2f82b2bfdf1aa3e52f356472e",
+    "tests/test_ensemble_inference.py": "4e79799444b0b9b188d5075f0563e29eed8b2a4c508bb11ee0f6f608dff4d940"
+  },
+  "holdout_access": false,
+  "new_training": false,
+  "promotion_or_api_change": false
+}

@@ -1,0 +1,17 @@
+{
+  "pipeline_id": "bb2532a753405d77abc05218d5099bcc76df1f4deb2a620b74f9c680f56a4a01",
+  "study_id": "7ea8b75962b0fce9e2bfc589cb0774ea0eaec8cf981e2997018770e17d34772d",
+  "members": [
+    "resnet50_seed42_20260929T145057295622Z",
+    "resnet50_seed43_20260929T150542730396Z",
+    "resnet50_seed44_20260929T151525632421Z"
+  ],
+  "views": [
+    "identity",
+    "hflip",
+    "vflip",
+    "rot180"
+  ],
+  "averaging": "uniform_probabilities_across_all_views_and_models",
+  "logit_semantics": "log_probabilities_of_uniform_mixture"
+}

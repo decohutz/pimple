@@ -1,0 +1,103 @@
+{
+  "registered_at_utc": "2026-09-30T02:01:26.378529+00:00",
+  "dataset": {
+    "protocol_version": "experimental_v2",
+    "dataset_version": "ham10000_e4a2a274374f9909",
+    "dataset_manifest_sha256": "e4a2a274374f9909cadc2b59870939929ef00680ac008a99b76285c2692b953f",
+    "metadata_sha256": "b0352393dc54843e39a7c108781c54cc8a0ef282240330ac239a88c46ea0cc0f",
+    "split_version": "split_v2/candidate",
+    "split_manifest_sha256": "5688f569f1bed13b701ec00c66f6581e6d55d3d341fc6224915c2353ac0dda96",
+    "certificate_id": "291504d3ac596e2b74e71e0e55685a113b01b622d33f75ca139a8b2ff3f58814",
+    "class_order": [
+      "mel",
+      "nv",
+      "bcc",
+      "akiec",
+      "bkl",
+      "df",
+      "vasc"
+    ],
+    "split_seed": 20260928,
+    "calibration_seed": 20260929
+  },
+  "split_role": "validation",
+  "class_order": [
+    "mel",
+    "nv",
+    "bcc",
+    "akiec",
+    "bkl",
+    "df",
+    "vasc"
+  ],
+  "view_order": [
+    "identity",
+    "hflip",
+    "vflip",
+    "rot180",
+    "rot90",
+    "rot270",
+    "transpose",
+    "antitranspose"
+  ],
+  "view_sets": {
+    "identity": [
+      0
+    ],
+    "flips4": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "d4": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7
+    ]
+  },
+  "families": {
+    "reference": [
+      "resnet50_seed42_20260929T145057295622Z",
+      "resnet50_seed43_20260929T150542730396Z",
+      "resnet50_seed44_20260929T151525632421Z"
+    ],
+    "no_smoothing": [
+      "resnet50_seed42_20260929T193542664239Z",
+      "resnet50_seed43_20260929T195138165823Z",
+      "resnet50_seed44_20260929T200538847380Z"
+    ],
+    "mixed6": [
+      "resnet50_seed42_20260929T145057295622Z",
+      "resnet50_seed43_20260929T150542730396Z",
+      "resnet50_seed44_20260929T151525632421Z",
+      "resnet50_seed42_20260929T193542664239Z",
+      "resnet50_seed43_20260929T195138165823Z",
+      "resnet50_seed44_20260929T200538847380Z"
+    ]
+  },
+  "member_artifact_hashes": {
+    "resnet50_seed42_20260929T145057295622Z": "ad791e4b4f0ddbc0975bd97c503fff16fac36a427411e26a0b5dd06131198b07",
+    "resnet50_seed43_20260929T150542730396Z": "2329e4c7745f104f771e09c6f5e4e509f37733173c663d7b4a5522ade6a1f9ce",
+    "resnet50_seed44_20260929T151525632421Z": "f300e4fe0cbb4eacf612d1e5b2c7d5c5dbaf2b3e78bd0bdd06aa3c5bc64044b0",
+    "resnet50_seed42_20260929T193542664239Z": "f03b6b102e78b328497b14484f25cee0c0abb2c1ba65694df9f84f511e3be0d5",
+    "resnet50_seed43_20260929T195138165823Z": "a1be01a8b376ccebed2bac4239a811695f3a50f3c42b34f92e775eef8ffc1378",
+    "resnet50_seed44_20260929T200538847380Z": "09f65c8ce34e90a28769a404fb92be0f07d010a496ecbcde06618a826e6ff843"
+  },
+  "candidate_count": 9,
+  "averaging": "uniform_probabilities_across_all_views_and_models",
+  "logit_semantics": "log_probabilities_of_uniform_mixture",
+  "decision": "highest_validation_macro_f1_among_candidates_with_mel_recall_at_least_reference_candidate; ties_fewer_forward_passes_then_name",
+  "baseline_run": "resnet50_seed44_20260929T151525632421Z",
+  "gpu_budget_seconds": 1800,
+  "existing_identity_ensemble_scores_already_observed": true,
+  "tta_scores_observed_before_design": false,
+  "calibration": "not_applied",
+  "promotion": false,
+  "study_id": "7ea8b75962b0fce9e2bfc589cb0774ea0eaec8cf981e2997018770e17d34772d"
+}

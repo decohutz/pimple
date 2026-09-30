@@ -1,0 +1,22 @@
+{
+  "metric": "macro_f1",
+  "point_estimate": 0.7671182485528371,
+  "lower": 0.7137470668267879,
+  "upper": 0.8050014622447086,
+  "confidence": 0.95,
+  "method": "unstratified_group_percentile",
+  "group_unit": "group_id",
+  "n_groups": 1121,
+  "seed": 20260928,
+  "replicates": 2000,
+  "replicates_missing_class": {
+    "mel": 0,
+    "nv": 0,
+    "bcc": 0,
+    "akiec": 0,
+    "bkl": 0,
+    "df": 0,
+    "vasc": 0
+  },
+  "limitation": "Validation interval is conditional on model selection; it is not an unbiased final performance estimate."
+}

@@ -1,0 +1,17 @@
+{
+  "pipeline_id": "46ff4a5370b92759a2076705afcc42c8b4e2081a154bee4bcc13f3f6b42aab2e",
+  "study_id": "7ea8b75962b0fce9e2bfc589cb0774ea0eaec8cf981e2997018770e17d34772d",
+  "members": [
+    "resnet50_seed42_20260929T145057295622Z",
+    "resnet50_seed43_20260929T150542730396Z",
+    "resnet50_seed44_20260929T151525632421Z",
+    "resnet50_seed42_20260929T193542664239Z",
+    "resnet50_seed43_20260929T195138165823Z",
+    "resnet50_seed44_20260929T200538847380Z"
+  ],
+  "views": [
+    "identity"
+  ],
+  "averaging": "uniform_probabilities_across_all_views_and_models",
+  "logit_semantics": "log_probabilities_of_uniform_mixture"
+}

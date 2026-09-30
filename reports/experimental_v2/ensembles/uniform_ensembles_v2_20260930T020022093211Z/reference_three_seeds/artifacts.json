@@ -1,0 +1,11 @@
+{
+  "files": {
+    "ensemble_manifest.json": "d6400be1f8bf3e805f9a3aca4e34c9a35772b2a8474a7af39b906d678db542e6",
+    "validation_interval.json": "b6287b8fe8e7cd4ac166dc2da5c363b09ea4bce003f37bc315b55cedbb90ab8a",
+    "validation_logits.npy": "3fd56858e67ce2ba28cffc0b6e05c2b2a221ea809796a2f4797da31f0db52329",
+    "validation_metrics.json": "c8102e6aaef6ad8572f3069d68622e155276708df9c3e3cf34e648e80ebc7231",
+    "validation_prediction_manifest.json": "796aef341ddda0392e8ecd20baff1f0fe4217aad9977bc997be4a0840f9b9f24",
+    "validation_predictions.csv": "c9ffae1ee35f12a72c7cb00df3f808cfe4ece4fa1a95c146d443089f584d0a9e"
+  },
+  "content_sha256": "b15ac52d785a70d23a05eff95e52f79f912a5eab05392b75328d33ef10a9eac7"
+}

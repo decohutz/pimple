@@ -1,0 +1,44 @@
+{
+  "study": "reports/experimental_v2/tta/d4_study_20260930T020126377530Z",
+  "recommended_pipeline": "no_smoothing_flips4",
+  "macro_f1_delta": 0.04218588695299197,
+  "mel_as_nv_baseline": 48,
+  "mel_as_nv_candidate": 57,
+  "holdout_access": false,
+  "freeze_or_promotion": false,
+  "tta_total_seconds": 96.55830650008284,
+  "tta_forward_seconds": 49.46537889924366,
+  "study_interval": {
+    "metric": "macro_f1",
+    "point_estimate": 0.7722062659365712,
+    "lower": 0.7193656240663056,
+    "upper": 0.8086408536062796,
+    "confidence": 0.95,
+    "method": "unstratified_group_percentile",
+    "group_unit": "group_id",
+    "n_groups": 1121,
+    "seed": 20260928,
+    "replicates": 2000,
+    "replicates_missing_class": {
+      "mel": 0,
+      "nv": 0,
+      "bcc": 0,
+      "akiec": 0,
+      "bkl": 0,
+      "df": 0,
+      "vasc": 0
+    },
+    "limitation": "Validation interval is conditional on model selection; it is not an unbiased final performance estimate."
+  },
+  "paired_delta_interval": {
+    "metric": "macro_f1_delta",
+    "lower": 0.008286267216211063,
+    "upper": 0.07725333832684722,
+    "confidence": 0.95,
+    "group_unit": "group_id",
+    "groups": 1121,
+    "replicates": 2000,
+    "seed": 20260930,
+    "limitation": "Paired validation bootstrap conditional on adaptive candidate selection; not a confirmatory test."
+  }
+}

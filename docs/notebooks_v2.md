@@ -4,6 +4,11 @@ Os notebooks atuais consomem `split_v2/candidate`. O modelo operacional e todos 
 resultados v1 continuam preservados. Não houve treinamento CNN real, calibração,
 rescue, definição de thresholds ou avaliação do holdout nesta migração.
 
+Depois da migração foram concluídas duas receitas ResNet50 em três seeds e uma
+busca rápida de ensembles/TTA. O melhor macro-F1 de validation foi 0.7722, com
+trade-offs de melanoma e custo detalhados no [guia do candidato ensemble](ensemble_tta_v2.md).
+Esse candidato tem contrato de desenvolvimento separado e não altera a API.
+
 ## Sequência e fronteiras
 
 | Notebook | Pergunta/responsabilidade | Entradas | Saídas | Dados permitidos |

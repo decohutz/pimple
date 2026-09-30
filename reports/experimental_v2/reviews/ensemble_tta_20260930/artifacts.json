@@ -1,0 +1,15 @@
+{
+  "files": {
+    "comparison.csv": "d9b352338d92312bc016bb1fda6d5ac35c177b306596d557ab97649ecb764459",
+    "comparison.png": "327ac1a8a82ccb4b362c33ac9c6d45dc6ed6e47b2db8575a6a4413f203ddd1a3",
+    "comparison.svg": "9b467f90b926cc0f02e80bb574729ef8c12efecebea6eb08b640fcdce41df2a1",
+    "evidence.json": "ad25b395dddf49b0dde9bc2cdc9ac5cda394a6a403ec2cfa5f3c84a9e39031db",
+    "inference_verification.json": "e74e9dd7a5dd9f3436ff34b9ed559cc986184b515cf474f46c5677b5e5eb815a",
+    "inference_verification_final.json": "a084218e15fa38dd78567a3111356f584e4d95d6798a8c73280f5d3e32768826",
+    "per_class_comparison.csv": "ee1398273b8f4b3d70d2b143483f93b890a55799239dec992b7d9771d25e226f",
+    "README.md": "45e67fa1d459982b38b4b93c0d88a47236daf399f8fcea98f07c7550a7198aac",
+    "render_comparison.py": "1c4c89cb057bbed274d603347ec05c165092a069ad3b6d353c2fbc9dea06a7b3",
+    "verification.json": "f973b4bd21375d6b9036544fc3c2f1117969190890d8cd9f1fcb7dfeb0031d27"
+  },
+  "content_sha256": "a91a9a41885b872c83188c8c6ab1a2f895cb3b9b15925ed947f26f9fdc69dd52"
+}

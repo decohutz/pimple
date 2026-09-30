@@ -1,0 +1,50 @@
+{
+  "created_at_utc": "2026-09-30T02:00:22.388629+00:00",
+  "git_commit": "666ccb0857183af17ac0c4fa2e1158130fe82bbd",
+  "working_tree_dirty": true,
+  "dataset": {
+    "protocol_version": "experimental_v2",
+    "dataset_version": "ham10000_e4a2a274374f9909",
+    "dataset_manifest_sha256": "e4a2a274374f9909cadc2b59870939929ef00680ac008a99b76285c2692b953f",
+    "metadata_sha256": "b0352393dc54843e39a7c108781c54cc8a0ef282240330ac239a88c46ea0cc0f",
+    "split_version": "split_v2/candidate",
+    "split_manifest_sha256": "5688f569f1bed13b701ec00c66f6581e6d55d3d341fc6224915c2353ac0dda96",
+    "certificate_id": "291504d3ac596e2b74e71e0e55685a113b01b622d33f75ca139a8b2ff3f58814",
+    "class_order": [
+      "mel",
+      "nv",
+      "bcc",
+      "akiec",
+      "bkl",
+      "df",
+      "vasc"
+    ],
+    "split_seed": 20260928,
+    "calibration_seed": 20260929
+  },
+  "source_hashes": {
+    "scripts/check_notebooks_v2.py": "0933815783a91e9a22c9bff1a8f634389f9b7712edcc86f4e3065ee085917778",
+    "scripts/cnn_preflight.py": "1203ac47199f9b9398f31665477ea8f6175e9774586604a83cd879dc5766c854",
+    "scripts/compare_smoothing_ablation.py": "b5d133655d9f6fb2e7922ca47e4c71badd19c3b60452323c77f70c4febb9c76e",
+    "scripts/evaluate_frozen.py": "70cbbfcdf6bd91fda6c9890f790556c9d063c1c2d6f33c4a36f06f7bb13ac55c",
+    "scripts/experimental_protocol.py": "4a109fd1cd2db94daf961956c6a1cf5563ee824aae0bba2e46e0e3adf57d7574",
+    "scripts/experimental_validity.py": "9e1447ea67cb30694b483eb12b4b46e452f9c07ece855d576a7a8a6c1b3671aa",
+    "scripts/run_training_plan.py": "918b1d2e9128ef12a10956683dfb4494de2bfb777d83c9a18528a15bcb0e0844",
+    "scripts/v2_artifacts.py": "64c009a0a6910f5130df992232272dcbeba8dd11bfd46a8b5b151088aa3b3b2e",
+    "scripts/v2_baselines.py": "ca05620a700576988dc19321aa9869d6c01afba8d8607c0bc3e42694583c9152",
+    "scripts/v2_data.py": "eea90dd9d970e2ac419acc96604f339d3550bb1bb2aff408addef013cd2191b9",
+    "scripts/v2_ensembles.py": "0b1a2ba03f98ec5734c811f71cc77b775dd93ba76b0b5da98972107bb4c0425f",
+    "scripts/v2_metrics.py": "d94723a77737a2a54ea10ecb901cb17ebb1ac5ad0e597924371eb90840065b47",
+    "scripts/v2_release.py": "9d814bce80f80b16579de4ba45a70c97f7902c1abfce24b9b8376307fdec50ef",
+    "scripts/v2_training.py": "97cfa725f392636007ce109b39a782d3b46ef048c70a1e909cd5842cfde82794",
+    "notebooks/01_eda_lesions.ipynb": "dea17d30f3815cd4298430317ef18e8688ace5b5856cd024d39cf33312883203",
+    "notebooks/02_prepare_splits.ipynb": "5aba6ffc0d5989f0d6754504e712c605a52ab5810fe7c338a6e3dc09f15cc45f",
+    "notebooks/03_baselines.ipynb": "b6c287372010fb7c3808def494bbd1f633683e00576287ec4e53539695e4e4f5",
+    "notebooks/04_experiments_and_selection.ipynb": "eb8c131b1406e9bb0e635b66e4546065e861b8d5b7280c68f64a54c45da0c73a",
+    "notebooks/05_train_real.ipynb": "2ef5a03a99b8a42dd9aac12e368ea1fac09a316d4b5a7de36e7552f3da84c0a8",
+    "notebooks/06_inference_contract_and_app_integration.ipynb": "6756d4c26f5f1c85a58bf565a6ef954ab231231ebeb362b09b8f0c1e9e9012cb",
+    "notebooks/07_evaluate_frozen_candidate.ipynb": "2bf91d2122003dc86ace53b7a907ed62bc8198e2fb1b33d1cebd77c65e0bfc50",
+    "docs/experimental_protocol_v2.md": "d20207c823c9481525f2d46f9662f5e9a82464dd2525bb9e75a73cd9e65cfd4a"
+  },
+  "source_snapshot_sha256": "2800a56fb29f8028353200d33029a0351d35a696d9e41fb7b15c322483ddca1e"
+}

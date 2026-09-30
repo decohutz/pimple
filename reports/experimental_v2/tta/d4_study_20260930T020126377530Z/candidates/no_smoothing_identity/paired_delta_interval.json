@@ -1,0 +1,11 @@
+{
+  "metric": "macro_f1_delta",
+  "lower": -0.026095014856917932,
+  "upper": 0.05297567406543023,
+  "confidence": 0.95,
+  "group_unit": "group_id",
+  "groups": 1121,
+  "replicates": 2000,
+  "seed": 20260930,
+  "limitation": "Paired validation bootstrap conditional on adaptive candidate selection; not a confirmatory test."
+}

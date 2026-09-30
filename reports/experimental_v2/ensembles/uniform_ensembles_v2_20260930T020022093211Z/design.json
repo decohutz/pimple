@@ -1,0 +1,204 @@
+{
+  "experiment_id": "uniform_ensembles_v2_20260930T020022093211Z",
+  "created_at_utc": "2026-09-30T02:00:22.094211+00:00",
+  "dataset": {
+    "protocol_version": "experimental_v2",
+    "dataset_version": "ham10000_e4a2a274374f9909",
+    "dataset_manifest_sha256": "e4a2a274374f9909cadc2b59870939929ef00680ac008a99b76285c2692b953f",
+    "metadata_sha256": "b0352393dc54843e39a7c108781c54cc8a0ef282240330ac239a88c46ea0cc0f",
+    "split_version": "split_v2/candidate",
+    "split_manifest_sha256": "5688f569f1bed13b701ec00c66f6581e6d55d3d341fc6224915c2353ac0dda96",
+    "certificate_id": "291504d3ac596e2b74e71e0e55685a113b01b622d33f75ca139a8b2ff3f58814",
+    "class_order": [
+      "mel",
+      "nv",
+      "bcc",
+      "akiec",
+      "bkl",
+      "df",
+      "vasc"
+    ],
+    "split_seed": 20260928,
+    "calibration_seed": 20260929
+  },
+  "registration_status": "exploratory_registered_after_initial_logit_analysis",
+  "split_role": "validation",
+  "class_order": [
+    "mel",
+    "nv",
+    "bcc",
+    "akiec",
+    "bkl",
+    "df",
+    "vasc"
+  ],
+  "seeds_per_recipe": [
+    42,
+    43,
+    44
+  ],
+  "sources": {
+    "reference": {
+      "directory": "reports/experimental_v2/selections/resnet50_v2_reference_20260929_20260929T153109921383Z",
+      "artifacts_sha256": "f4044a70f83df1709acbb26c22dbf5ec1ae1541d0e43e223e25ed876ab4ca9eb",
+      "plan_id": "831e54bcfbdbacd5f0bddfc7f1eb676302b7696078d8d9ba9cdd62c501a22efe",
+      "recipe_id": "recipe_1a0a0e748c1c8d60",
+      "candidate_run_id": "resnet50_seed44_20260929T151525632421Z"
+    },
+    "no_smoothing": {
+      "directory": "reports/experimental_v2/selections/resnet50_v2_no_smoothing_20260929_20260929T201705724817Z",
+      "artifacts_sha256": "8af8d9ad2cb9270d20a32f66f68d7e9c1443b9ded241125d465ed31e3796cfce",
+      "plan_id": "6dd3688eece00127c53006d2ffaf3ea39760dc72ec8be140eca851c11c8840fc",
+      "recipe_id": "recipe_05c21f5ae8798b70",
+      "candidate_run_id": "resnet50_seed44_20260929T200538847380Z"
+    }
+  },
+  "members": {
+    "resnet50_seed42_20260929T145057295622Z": {
+      "run_id": "resnet50_seed42_20260929T145057295622Z",
+      "directory": "models/experimental_v2/runs/resnet50_seed42_20260929T145057295622Z",
+      "recipe_id": "recipe_1a0a0e748c1c8d60",
+      "seed": 42,
+      "architecture": "resnet50",
+      "label_smoothing": 0.05,
+      "checkpoint_sha256": "68e8b66fc28d7b5104c04695114ffc08ecfd2d7312e275d2005ebc05e545c414",
+      "artifacts_sha256": "ad791e4b4f0ddbc0975bd97c503fff16fac36a427411e26a0b5dd06131198b07",
+      "prediction_manifest_sha256": "7c2db19459ecd1604052b2b917577ab7796f269861dbfb0b75830a0228e5fb55",
+      "config_sha256": "8a2802ea3e5836d12f0ed05ce4998e50f454b0cb99e632ba3ad952ddb36459c0",
+      "provenance_sha256": "ce575548beb15a8473293bab11f402c9c9e6f433e3b67e2c3bb4ed893e1e7745",
+      "preprocessing_sha256": "e03e0d79f146b4867e7568482d1b6fcb638a7011a3b028d3138689f0f1611fdb",
+      "parameters": 23522375,
+      "checkpoint_bytes": 94409169
+    },
+    "resnet50_seed43_20260929T150542730396Z": {
+      "run_id": "resnet50_seed43_20260929T150542730396Z",
+      "directory": "models/experimental_v2/runs/resnet50_seed43_20260929T150542730396Z",
+      "recipe_id": "recipe_1a0a0e748c1c8d60",
+      "seed": 43,
+      "architecture": "resnet50",
+      "label_smoothing": 0.05,
+      "checkpoint_sha256": "0fcdc3f9d3fce088c67ffdd58cbd8cf0ab3c477e95df201e57311091514f2cd5",
+      "artifacts_sha256": "2329e4c7745f104f771e09c6f5e4e509f37733173c663d7b4a5522ade6a1f9ce",
+      "prediction_manifest_sha256": "b5a134e13c8475910aabc0e6c5b31742da8a8462d0c663220aa67657af59e07b",
+      "config_sha256": "f3a13dc2d8d5d097f0679a25c3fee26b5e1853847b38a7914f0e1c647cac6222",
+      "provenance_sha256": "a587210b87075766365a83f40deffbecb34509b1d736e6a2dac09a3011664866",
+      "preprocessing_sha256": "e03e0d79f146b4867e7568482d1b6fcb638a7011a3b028d3138689f0f1611fdb",
+      "parameters": 23522375,
+      "checkpoint_bytes": 94409169
+    },
+    "resnet50_seed44_20260929T151525632421Z": {
+      "run_id": "resnet50_seed44_20260929T151525632421Z",
+      "directory": "models/experimental_v2/runs/resnet50_seed44_20260929T151525632421Z",
+      "recipe_id": "recipe_1a0a0e748c1c8d60",
+      "seed": 44,
+      "architecture": "resnet50",
+      "label_smoothing": 0.05,
+      "checkpoint_sha256": "27f0ecceca9ebcbb50d725b7e9e0e7dcaf764c9fda164ac63177aaaa54f1214c",
+      "artifacts_sha256": "f300e4fe0cbb4eacf612d1e5b2c7d5c5dbaf2b3e78bd0bdd06aa3c5bc64044b0",
+      "prediction_manifest_sha256": "76cf470a616c02dbcdc1e108cd90d061ed2017132d7964b60a7116f0985a0d24",
+      "config_sha256": "c37e26a01a4fb6b8035f050d3406fb2844d5978a34e785e8c2b663486f5535d3",
+      "provenance_sha256": "054f8867308c30f0c7386119a3a5439deb45c1eefc5f02f3a7f6dd6910462f2d",
+      "preprocessing_sha256": "e03e0d79f146b4867e7568482d1b6fcb638a7011a3b028d3138689f0f1611fdb",
+      "parameters": 23522375,
+      "checkpoint_bytes": 94409169
+    },
+    "resnet50_seed42_20260929T193542664239Z": {
+      "run_id": "resnet50_seed42_20260929T193542664239Z",
+      "directory": "models/experimental_v2/runs/resnet50_seed42_20260929T193542664239Z",
+      "recipe_id": "recipe_05c21f5ae8798b70",
+      "seed": 42,
+      "architecture": "resnet50",
+      "label_smoothing": 0.0,
+      "checkpoint_sha256": "27f4e0438d474d843ffbd0fb176a60cfda15f22de5bd0a5411c5997a344dda0b",
+      "artifacts_sha256": "f03b6b102e78b328497b14484f25cee0c0abb2c1ba65694df9f84f511e3be0d5",
+      "prediction_manifest_sha256": "8c2fb8af25c5bc5eaf819f3c41083debd5727a38caacc01e32eb7a5c78e38b54",
+      "config_sha256": "ffc51463bb10ed5ef943ab1eb43c5e77119cf44865352529c84f2c32740b3d60",
+      "provenance_sha256": "5c8ff72cf9151af6bd5b568664917dde0b46773082ff2abea8933c13f4d47600",
+      "preprocessing_sha256": "e03e0d79f146b4867e7568482d1b6fcb638a7011a3b028d3138689f0f1611fdb",
+      "parameters": 23522375,
+      "checkpoint_bytes": 94409169
+    },
+    "resnet50_seed43_20260929T195138165823Z": {
+      "run_id": "resnet50_seed43_20260929T195138165823Z",
+      "directory": "models/experimental_v2/runs/resnet50_seed43_20260929T195138165823Z",
+      "recipe_id": "recipe_05c21f5ae8798b70",
+      "seed": 43,
+      "architecture": "resnet50",
+      "label_smoothing": 0.0,
+      "checkpoint_sha256": "ebab5de809a19932c5b3d4c72eb31e3cb14bfc8e50b666300a571df2f5183f2b",
+      "artifacts_sha256": "a1be01a8b376ccebed2bac4239a811695f3a50f3c42b34f92e775eef8ffc1378",
+      "prediction_manifest_sha256": "1b1657d45ba3dc57d4f844127c3a48fe7626cf9c5f56c3c34c003f4b8c2b576c",
+      "config_sha256": "e44eeee46581385ee1f5af3bd644d809e65c7f800025ac7e2a9b402a4fcab731",
+      "provenance_sha256": "2179bcf53be6e87ab69e727e472578afba4f0e5a52fb905ab1788fd5f6dfe36e",
+      "preprocessing_sha256": "e03e0d79f146b4867e7568482d1b6fcb638a7011a3b028d3138689f0f1611fdb",
+      "parameters": 23522375,
+      "checkpoint_bytes": 94409169
+    },
+    "resnet50_seed44_20260929T200538847380Z": {
+      "run_id": "resnet50_seed44_20260929T200538847380Z",
+      "directory": "models/experimental_v2/runs/resnet50_seed44_20260929T200538847380Z",
+      "recipe_id": "recipe_05c21f5ae8798b70",
+      "seed": 44,
+      "architecture": "resnet50",
+      "label_smoothing": 0.0,
+      "checkpoint_sha256": "736cf4742bc8a6db3b2a56612688b5a50d39d1ab856926b47c3fe6ef0c5238a5",
+      "artifacts_sha256": "09f65c8ce34e90a28769a404fb92be0f07d010a496ecbcde06618a826e6ff843",
+      "prediction_manifest_sha256": "e98c7df1d710c509ebcb2b705085cca8f668e0cc2725f61dec27e665557c2b45",
+      "config_sha256": "24cadd74f8a17a4fd4ef3eebe8779f08918e3d3388e79e177fd69c144fd74361",
+      "provenance_sha256": "c6b354af39c8b96256a4889ae1704ca713c8c2eee02c7daada6e8c380462c978",
+      "preprocessing_sha256": "e03e0d79f146b4867e7568482d1b6fcb638a7011a3b028d3138689f0f1611fdb",
+      "parameters": 23522375,
+      "checkpoint_bytes": 94409169
+    }
+  },
+  "candidates": {
+    "reference_three_seeds": [
+      "resnet50_seed42_20260929T145057295622Z",
+      "resnet50_seed43_20260929T150542730396Z",
+      "resnet50_seed44_20260929T151525632421Z"
+    ],
+    "no_smoothing_three_seeds": [
+      "resnet50_seed42_20260929T193542664239Z",
+      "resnet50_seed43_20260929T195138165823Z",
+      "resnet50_seed44_20260929T200538847380Z"
+    ],
+    "mixed_six_models": [
+      "resnet50_seed42_20260929T145057295622Z",
+      "resnet50_seed43_20260929T150542730396Z",
+      "resnet50_seed44_20260929T151525632421Z",
+      "resnet50_seed42_20260929T193542664239Z",
+      "resnet50_seed43_20260929T195138165823Z",
+      "resnet50_seed44_20260929T200538847380Z"
+    ]
+  },
+  "aggregation": "arithmetic_mean_of_softmax_probabilities",
+  "weights": "uniform_within_each_candidate",
+  "primary_metric": "validation_macro_f1",
+  "secondary_metrics": [
+    "accuracy",
+    "weighted_f1",
+    "per_class_precision_recall_f1",
+    "nll",
+    "brier_multiclass"
+  ],
+  "bootstrap": {
+    "unit": "group_id",
+    "seed": 20260928,
+    "replicates": 2000
+  },
+  "prediction_row_identity": "a467a9eb1b8d782be60834892f7caa5a8b08962b662783495685668902e73155",
+  "calibration": "not_applied",
+  "confidence_threshold": null,
+  "reserved_partitions_read": false,
+  "image_inference": false,
+  "operational_activation": false,
+  "promotion_decision": null,
+  "limitations": [
+    "Initial exploratory analysis already observed ensemble scores before this persisted design.",
+    "The three-candidate family is fixed, but this report is not a prospective preregistration.",
+    "No fitted ensemble weights, temperature, class thresholds, seed subsets or rescue policies.",
+    "Validation has been used for checkpoint and recipe selection; intervals are conditional.",
+    "An ensemble score is not a mean across independent training seeds.",
+    "Computation scales with member count; deployment latency has not been measured."
+  ]
+}

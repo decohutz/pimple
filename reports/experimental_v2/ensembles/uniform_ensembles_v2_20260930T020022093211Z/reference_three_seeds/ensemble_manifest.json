@@ -1,0 +1,54 @@
+{
+  "ensemble_id": "844ddb823bd544e1d4def047a97c8f6acef54b7a63c80bdac1b76be869527843",
+  "prediction_checkpoint_identity_kind": "ensemble_binding_sha256",
+  "binding": {
+    "class_order": [
+      "mel",
+      "nv",
+      "bcc",
+      "akiec",
+      "bkl",
+      "df",
+      "vasc"
+    ],
+    "dataset": {
+      "protocol_version": "experimental_v2",
+      "dataset_version": "ham10000_e4a2a274374f9909",
+      "dataset_manifest_sha256": "e4a2a274374f9909cadc2b59870939929ef00680ac008a99b76285c2692b953f",
+      "metadata_sha256": "b0352393dc54843e39a7c108781c54cc8a0ef282240330ac239a88c46ea0cc0f",
+      "split_version": "split_v2/candidate",
+      "split_manifest_sha256": "5688f569f1bed13b701ec00c66f6581e6d55d3d341fc6224915c2353ac0dda96",
+      "certificate_id": "291504d3ac596e2b74e71e0e55685a113b01b622d33f75ca139a8b2ff3f58814",
+      "class_order": [
+        "mel",
+        "nv",
+        "bcc",
+        "akiec",
+        "bkl",
+        "df",
+        "vasc"
+      ],
+      "split_seed": 20260928,
+      "calibration_seed": 20260929
+    },
+    "aggregation": "arithmetic_mean_of_softmax_probabilities",
+    "member_ids": [
+      "resnet50_seed42_20260929T145057295622Z",
+      "resnet50_seed43_20260929T150542730396Z",
+      "resnet50_seed44_20260929T151525632421Z"
+    ],
+    "checkpoint_sha256": [
+      "68e8b66fc28d7b5104c04695114ffc08ecfd2d7312e275d2005ebc05e545c414",
+      "0fcdc3f9d3fce088c67ffdd58cbd8cf0ab3c477e95df201e57311091514f2cd5",
+      "27f0ecceca9ebcbb50d725b7e9e0e7dcaf764c9fda164ac63177aaaa54f1214c"
+    ],
+    "weights": [
+      0.3333333333333333,
+      0.3333333333333333,
+      0.3333333333333333
+    ],
+    "design_sha256": "3ab68270194de0b36fa0898e63034f5a61c8d62521ab556ce04668c002039694"
+  },
+  "split_role": "validation",
+  "operational_activation": false
+}
